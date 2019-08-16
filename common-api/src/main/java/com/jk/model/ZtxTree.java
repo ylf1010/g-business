@@ -1,6 +1,8 @@
 package com.jk.model;
 
-public class ZtxTree {
+import java.io.Serializable;
+
+public class ZtxTree implements Serializable {
     private Integer id;
 
     private String name;
