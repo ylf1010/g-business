@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.XuDao" >
+     <!-- 客户列表查询  总条数-->
+     <select id="xkehulistcount"  parameterType="map"  resultType="int">
+         select count(1)  from  user_xu  a,  jifen_xu b, member_xu c ,biaoqian_xu d ,zu_xu e
+         where a.jfid=b.jfid  and a.member=c.hyid and a.bqid=d.bqid
+         and a.zuid = e.zuid
+
+         <include refid="sql1"></include>
+     </select>
+
+    <!-- 客户列表查询  -->
+    <select id="xkehulist"  parameterType="map"  resultType="com.jk.model.User_xu">
+        select a.keid,a.nickname,a.img,a.phone,a.endtime,c.rank,b.jfsum,d.bqname
+        from  user_xu  a,  jifen_xu b, member_xu c ,biaoqian_xu d ,zu_xu e
+        where a.jfid=b.jfid  and a.member=c.hyid and a.bqid=d.bqid
+        and a.zuid = e.zuid
+
+        <include refid="sql1"></include>
+    </select>
+
+    <sql id="sql1">
+         <if test="name !=null and  name !='' "> and  a.nickname = #{name}</if>
+        <if test="hiuyuan == 0 "> and  a.member = 0</if>
+        <if test="hiuyuan == 1 "> and  a.member != 0</if>
+        <if  test="stajifen !=null and stajifen !='' "> b.jfsum >= #{stajifen}</if>
+        <if  test="endjifen !=null and endjifen !='' "> b.jfsum &lt;= #{endjifen}</if>
+    </sql>
+
+
+</mapper>

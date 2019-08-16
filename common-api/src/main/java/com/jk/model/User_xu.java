@@ -28,6 +28,36 @@ public class User_xu {
     //分组的字段
     private  Integer zuid;
     private  String zuname;
+    //会员级别
+    private  String rank;
+   //积分
+   private  Integer jfsum;
+   //标签
+    private  String  bqname;
+
+    public String getBqname() {
+        return bqname;
+    }
+
+    public void setBqname(String bqname) {
+        this.bqname = bqname;
+    }
+
+    public Integer getJfsum() {
+        return jfsum;
+    }
+
+    public void setJfsum(Integer jfsum) {
+        this.jfsum = jfsum;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
+
+    public String getRank() {
+        return rank;
+    }
 
     public Integer getZuid() {
         return zuid;
