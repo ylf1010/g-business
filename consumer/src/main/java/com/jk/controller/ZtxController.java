@@ -11,4 +11,9 @@ public class ZtxController {
 
     @Reference
     private ZtxService zs;
+
+    @RequestMapping("tomain")
+    public String tomain(){
+        return "ztx/main";
+    }
 }
