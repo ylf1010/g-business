@@ -8,6 +8,7 @@ import java.util.Date;
 public class User_xu {
       //客户user表
     private  Integer id;
+    private  String img;
     private  String nickname;
     private  Integer phone;
     private  String sex;
@@ -23,6 +24,34 @@ public class User_xu {
     private  Integer member;
     private  String remark;
     private  Integer bqid;
+
+    //分组的字段
+    private  Integer zuid;
+    private  String zuname;
+
+    public Integer getZuid() {
+        return zuid;
+    }
+
+    public void setZuid(Integer zuid) {
+        this.zuid = zuid;
+    }
+
+    public void setZuname(String zuname) {
+        this.zuname = zuname;
+    }
+
+    public String getZuname() {
+        return zuname;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
 
     public Integer getId() {
         return id;
