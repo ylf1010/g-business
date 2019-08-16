@@ -1,6 +1,8 @@
 package com.jk.model;
 
-public class ZtxRoleTree {
+import java.io.Serializable;
+
+public class ZtxRoleTree implements Serializable {
     private Integer rtid;
 
     private Integer roleid;

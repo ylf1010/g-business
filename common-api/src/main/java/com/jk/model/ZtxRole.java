@@ -1,8 +1,9 @@
 package com.jk.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class ZtxRole {
+public class ZtxRole implements Serializable {
     private Integer roleid;
 
     private String rolename;

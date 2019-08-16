@@ -1,6 +1,8 @@
 package com.jk.model;
 
-public class ZtxUserRole {
+import java.io.Serializable;
+
+public class ZtxUserRole implements Serializable {
     private Integer urid;
 
     private Integer userid;
