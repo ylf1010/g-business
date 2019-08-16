@@ -53,6 +53,16 @@ public class RenZhengBean {
 
     private Integer qyphone;
 
+    private String wxsmrz;
+
+    public String getWxsmrz() {
+        return wxsmrz;
+    }
+
+    public void setWxsmrz(String wxsmrz) {
+        this.wxsmrz = wxsmrz;
+    }
+
     public Integer getId() {
         return id;
     }
