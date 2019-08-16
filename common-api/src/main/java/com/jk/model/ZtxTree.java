@@ -1,6 +1,9 @@
 package com.jk.model;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ZtxTree implements Serializable {
     private Integer id;
@@ -16,6 +19,26 @@ public class ZtxTree implements Serializable {
     private String state;
 
     private String checked;
+
+    private Map<String, Object> attributes = new HashMap<String, Object>(); // 添加到节点的自定义属性
+
+    private List<ZtxTree> nodes;
+
+    public Map<String, Object> getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(Map<String, Object> attributes) {
+        this.attributes = attributes;
+    }
+
+    public List<ZtxTree> getNodes() {
+        return nodes;
+    }
+
+    public void setNodes(List<ZtxTree> nodes) {
+        this.nodes = nodes;
+    }
 
     public Integer getId() {
         return id;
