@@ -3,9 +3,10 @@ package com.jk.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Jifen_xu {
+public class Jifen_xu implements Serializable {
     //积分表
     private  Integer  jfid;
     private  Integer  uid;

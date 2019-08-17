@@ -3,9 +3,10 @@ package com.jk.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class User_xu {
+public class User_xu implements Serializable {
       //客户user表
     private  Integer id;
     private  String img;

@@ -3,9 +3,10 @@ package com.jk.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Um_xu {
+public class Um_xu implements Serializable {
          //会员列表（客户与会员中间表）
     private   Integer umid;
     private   Integer uid;

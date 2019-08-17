@@ -22,7 +22,7 @@ public class XuServiceImpl  implements  XuService{
         //客户列表查询
     @Override
     public RowsTotal xkehulist(BootStrapUtil bt) {
-        System.out.println(bt.getHiuyuan());
+        System.out.println(bt.getName());
         Map map=new HashMap();
         //条件
         map.put("name",bt.getName());
@@ -38,7 +38,6 @@ public class XuServiceImpl  implements  XuService{
         RowsTotal  r=new RowsTotal();
         r.setTotal(total);
         r.setRows(list);
-
         return r;
     }
 }

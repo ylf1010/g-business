@@ -1,6 +1,8 @@
 package com.jk.model;
 
-public class Member_xu {
+import java.io.Serializable;
+
+public class Member_xu implements Serializable {
     //会员级别表
     private  Integer  hyid;
     private  String  rank;
