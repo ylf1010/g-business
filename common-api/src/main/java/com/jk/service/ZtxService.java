@@ -1,10 +1,9 @@
-package com.jk.dao;
+package com.jk.service;
 
 import com.jk.model.ZtxTree;
 
 import java.util.List;
 
-public interface ZtxTreeMapper {
-
+public interface ZtxService {
     List<ZtxTree> querytree();
 }
