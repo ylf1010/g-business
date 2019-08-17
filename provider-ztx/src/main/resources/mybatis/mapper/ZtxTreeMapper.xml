@@ -11,4 +11,13 @@
     <result column="checked" property="checked" jdbcType="VARCHAR" />
   </resultMap>
 
+  <select id="querytree" resultType="com.jk.model.ZtxTree"  >
+    SELECT  tp.*  FROM  user tu , y_user_role ur ,y_role tr , y_role_tree rp ,y_tree tp
+    WHERE  tu.id= ur.userid
+      AND    ur.roleid = tr.roleid
+      AND    tr.roleid= rp.roleid
+      AND    rp.treeid = tp.id
+      AND   tu.id= 1
+    GROUP BY tp.name
+  </select>
 </mapper>

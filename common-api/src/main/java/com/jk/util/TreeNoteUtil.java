@@ -2,13 +2,14 @@ package com.jk.util;
 
 import com.jk.model.ZtxTree;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
-public class TreeNoteUtil {
+public class TreeNoteUtil implements Serializable {
     
     /**
      * 获取父节点菜单
