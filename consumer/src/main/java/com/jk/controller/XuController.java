@@ -29,7 +29,7 @@ public class XuController {
     @RequestMapping("xkehulist")
     @ResponseBody
     public RowsTotal xkehulist(@RequestBody BootStrapUtil bt){
-        System.out.println(bt.getPageNumber());
+
         RowsTotal  list=xu.xkehulist(bt);
         return  list;
     }
