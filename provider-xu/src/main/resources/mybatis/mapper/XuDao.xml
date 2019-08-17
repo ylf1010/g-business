@@ -3,9 +3,9 @@
 <mapper namespace="com.jk.dao.XuDao" >
      <!-- 客户列表查询  总条数-->
      <select id="xkehulistcount"  parameterType="map"  resultType="int">
-         select count(1)  from  user_xu  a,  jifen_xu b, member_xu c ,biaoqian_xu d ,zu_xu e
+         select  count(1)
+         from  xu_user  a,  xu_jifen b, xu_member c ,xu_biaoqian d
          where a.jfid=b.jfid  and a.member=c.hyid and a.bqid=d.bqid
-         and a.zuid = e.zuid
 
          <include refid="sql1"></include>
      </select>
@@ -13,20 +13,52 @@
     <!-- 客户列表查询  -->
     <select id="xkehulist"  parameterType="map"  resultType="com.jk.model.User_xu">
         select a.keid,a.nickname,a.img,a.phone,a.endtime,c.rank,b.jfsum,d.bqname
-        from  user_xu  a,  jifen_xu b, member_xu c ,biaoqian_xu d ,zu_xu e
+        from  xu_user  a,  xu_jifen b, xu_member c ,xu_biaoqian d
         where a.jfid=b.jfid  and a.member=c.hyid and a.bqid=d.bqid
-        and a.zuid = e.zuid
-
         <include refid="sql1"></include>
+        limit  #{sta},#{end}
     </select>
 
+  <!--条件-->
     <sql id="sql1">
-         <if test="name !=null and  name !='' "> and  a.nickname = #{name}</if>
-        <if test="hiuyuan == 0 "> and  a.member = 0</if>
-        <if test="hiuyuan == 1 "> and  a.member != 0</if>
-        <if  test="stajifen !=null and stajifen !='' "> b.jfsum >= #{stajifen}</if>
-        <if  test="endjifen !=null and endjifen !='' "> b.jfsum &lt;= #{endjifen}</if>
+         <if test="name !=null and  name !='' "> and  (a.nickname = #{name}  or  a.phone = #{name})</if>
+        <if test="hiuyuan == 0 "> and  a.member = 1</if>
+        <if test="hiuyuan == 1 "> and  a.member != 1</if>
+        <if  test="stajifen !=null and stajifen !='' ">and  b.jfsum >= #{stajifen}</if>
+        <if  test="endjifen !=null and endjifen !='' ">and  b.jfsum &lt;= #{endjifen}</if>
+        <if  test="zuselect1 !=null and zuselect1 !='' and zuselect1 !=1 "> and  a.zuid = #{zuselect1}</if>
+
     </sql>
+
+    <!--客户信息批删-->
+    <delete id="xdelete1"  parameterType="String" >
+         delete  from xu_user where keid in
+         <foreach collection="array" open="(" close=")" item="id" separator=",">
+             #{id}
+         </foreach>
+    </delete>
+    <!--对应客户积分 批删-->
+    <delete id="xdelete1jifen"  parameterType="String" >
+        delete  from xu_jifen where uid in
+        <foreach collection="array" open="(" close=")" item="id" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!--下拉 分组-->
+      <select id="xxiala1"  resultType="com.jk.model.Zu_xu">
+          select zuid,zuname from xu_zu
+      </select>
+
+    <!--移动 移出分组-->
+      <update id="xupdate1">
+          update xu_user set zuid=#{1} where keid =#{0}
+      </update>
+
+    <!--新建分组-->
+    <insert id="xaddfenzu" parameterType="com.jk.model.Zu_xu">
+        insert into xu_zu(zuname) values (#{zuname})
+    </insert>
 
 
 </mapper>

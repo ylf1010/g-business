@@ -11,6 +11,15 @@ public class BootStrapUtil implements Serializable {
     private Integer hiuyuan;       //是否会员
     private  Integer stajifen;      //积分
     private  Integer endjifen;   //积分 区查
+    private  Integer zuselect1;   //分组
+
+    public Integer getZuselect1() {
+        return zuselect1;
+    }
+
+    public void setZuselect1(Integer zuselect1) {
+        this.zuselect1 = zuselect1;
+    }
 
     public Integer getPageNumber() {
         return pageNumber;
