@@ -3,7 +3,7 @@ package com.jk.model;
 import java.io.Serializable;
 import java.util.Date;
 
-public class ysqjiaoyi implements Serializable {
+public class YsqJiaoYi implements Serializable {
     private Integer id;
 
     private Integer ordernumber;
