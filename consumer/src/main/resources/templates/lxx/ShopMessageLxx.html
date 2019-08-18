@@ -10,34 +10,37 @@
         店铺信息
     </div>
     <p></p>
-    店铺名称&nbsp;&nbsp;<input type="text" name="" size="28"  value="请输入店铺名称" onfocus="javascript:if(this.value=='请输入店铺名称')this.value='';"  ><br/>
+    店铺名称&nbsp;&nbsp;<input type="text" name="dpname" size="28"  value="请输入店铺名称" onfocus="javascript:if(this.value=='请输入店铺名称')this.value='';"  ><br/>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    未认证  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="" ><font color="blue">立即认证</font></a><br/>
+    未认证  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../lxx/AuthenticationTransfer" >立即认证</font></a><br/>
     <p></p>
-    店铺Logo&nbsp;<input type="file" width="50" height="50"><br/>
+    店铺Logo&nbsp;<input type="file" name="dplogo" width="50" height="50"><br/>
     <p></p>
-    联系方式&nbsp;&nbsp;<input type="text" name="" size="28"  value="请输入客户可查看的联系方式" onfocus="javascript:if(this.value=='请输入客户可查看的联系方式')this.value='';" ><br/>
+    联系方式&nbsp;&nbsp;<input type="text" name="dpphone" size="28"  value="请输入客户可查看的联系方式" onfocus="javascript:if(this.value=='请输入客户可查看的联系方式')this.value='';" ><br/>
     <p></p>
     经营地址&nbsp;
     <!--省-->
-    <select>
+    <select name="shengid">
         <option value="-1">省</option>
+        <option value="1">1省</option>
     </select>
     <!--市-->
     &nbsp;
-    <select>
+    <select name="shiid">
         <option value="-1">市</option>
+        <option value="11">2市</option>
     </select>
     <!--县-->
     &nbsp;
-    <select>
+    <select name="xianid">
         <option value="-1">县</option>
+        <option value="33">3县</option>
     </select><br/>
     <p></p>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input type="text" name="" size="28"  value="请输入详细地址" onfocus="javascript:if(this.value=='请输入详细地址')this.value='';"><br/>
+    <input type="text" name="dpxxdz" size="28"  value="请输入详细地址" onfocus="javascript:if(this.value=='请输入详细地址')this.value='';"><br/>
     <p></p>
-    店铺简介&nbsp;&nbsp;<textarea rows="4" cols="40"></textarea><br>
+    店铺简介&nbsp;&nbsp;<textarea name="dpdesc" rows="4" cols="40"></textarea><br>
     <p></p>
     <div style="height: 100px;width: 400px;margin-left: 70px">
         我声明，此页面所填写内容均真实有效，
@@ -48,8 +51,27 @@
         细则）、行政监管和司法诉讼风险。
     </div>
     <div style="height: 300px;width: 400px;margin-left: 70px;margin-top:20px">
-        <input type="button" onclick="" value="保存">
+        <input type="submit" onclick="saveBook" value="保存">
     </div>
 </form>
 </body>
+<script>
+    function saveBook(){
+        $("#ShopMessage").form('submit',{
+            url:'../lxx/addShop',
+            onSubmit:function(){
+
+                return true;
+            },
+            success:function(data){
+                if(data){
+                    alert(11);
+                }else{
+                    $.messager.alert('提示','保存失败','error')
+                }
+
+            }
+        })
+    }
+</script>
 </html>
