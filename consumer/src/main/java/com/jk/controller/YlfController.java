@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 
 @Controller
 @RequestMapping("ylf")
@@ -37,7 +38,9 @@ public class YlfController {
     @ResponseBody
     public String loginUser(User user, HttpServletRequest request,String code){
          User loginUser = loginService.loginUser(user);
+
          String readCode = request.getSession().getAttribute("checkcode").toString();
+
                if(!readCode.toLowerCase().equals(code.toLowerCase())){
                    return "codeError";
                }
@@ -50,4 +53,18 @@ public class YlfController {
          request.getSession().setAttribute("user",loginUser);
          return "success";
    }
+   @RequestMapping("register")
+    @ResponseBody
+    public String reisterUser(User user){
+       User regigUser = loginService.loginUser(user);
+       if(regigUser!=null&&!"".equals(regigUser)){
+           return "usernull";
+       }
+       user.setUsercraetetime(new Date());
+       loginService.addregisUser(user);
+
+        return "regissuccess";
+   }
+
+
 }
