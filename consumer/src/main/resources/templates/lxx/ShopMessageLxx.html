@@ -8,6 +8,23 @@
 
     <script src="/js/jquery.min.js"></script>
 
+    <!-- jquery -->
+
+    <script type="text/javascript" src="/js2/easyui1.5/jquery.easyui.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/js2/easyui1.5/themes/icon.css" >
+    <!-- 主题 -->
+    <link rel="stylesheet" href="/js2/easyui1.5/themes/default/easyui.css" >
+    <!-- 方言 -->
+    <script type="text/javascript" src="/js2/easyui1.5/locale/easyui-lang-zh_CN.js"></script>
+    <!-- 图片  -->
+    <script src="/js2/uploadify/jquery.uploadify.js"></script>
+    <link rel="stylesheet" href="/js2/uploadify/uploadify.css" >
+    <!-- 富文本 -->
+    <script src="/js2/kindeditor-4.1.10/kindeditor-all.js"></script>
+    <link rel="stylesheet" href="/js2/kindeditor-4.1.10/themes/default/default.css" >
+
+
 </head>
 
 <body>
@@ -25,23 +42,12 @@
     联系方式&nbsp;&nbsp;<input type="text" name="dpphone" size="28"  value="请输入客户可查看的联系方式" onfocus="javascript:if(this.value=='请输入客户可查看的联系方式')this.value='';" ><br/>
     <p></p>
     经营地址&nbsp;
-    <!--省-->
-    <select name="shengid">
-        <option value="-1">省</option>
-        <option value="1">1省</option>
-    </select>
-    <!--市-->
-    &nbsp;
-    <select name="shiid">
-        <option value="-1">市</option>
-        <option value="11">2市</option>
-    </select>
-    <!--县-->
-    &nbsp;
-    <select name="xianid">
-        <option value="-1">县</option>
-        <option value="33">3县</option>
-    </select><br/>
+    <input type="text" id="sheng" class="easyui-combobox" name="provinceCode" />
+    -
+    <input type="text" id="shi" class="easyui-combobox" name="cityCode"/>
+    -
+    <input type="text" id="xian" class="easyui-combobox" name="cityCode"/>
+    <br/>
     <p></p>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <input type="text" name="dpxxdz" size="28"  value="请输入详细地址" onfocus="javascript:if(this.value=='请输入详细地址')this.value='';"><br/>
@@ -65,6 +71,12 @@
 </body>
 <script>
 
+    $(function(){
+
+            initAddProvinceSelect();
+
+    }
+    );
 
     //新增
 
@@ -75,7 +87,7 @@
                             type: 'post',
                             cache:false,
                             data: $("#ShopMessage").serialize(),
-                            success: function () {
+                            success: function (data) {
 
                                 alert(11);
                                 window.location.href="/lxx/ShopMessage";
@@ -86,6 +98,32 @@
                         );
     }
 
+    //新增二级联动
+    function initAddProvinceSelect(){
+        $("#sheng").combobox({
+            url:'../tree/findArea.do?id=0',
+            textField:'areaname',
+            valueField:'id',
+            onChange:function(newValue,oldValue){
+                $("#shi").combobox({
+                    url:'../tree/findArea.do?id='+newValue,
+                    textField:'areaname',
+                    valueField:'id',
+                        onChange:function(newValue,oldValue){
+                            $("#xian").combobox({
+                                    url:'../tree/findArea.do?id='+newValue,
+                                    textField:'areaname',
+                                    valueField:'id'
+                                }
+                            )
+                        }
+                }
+                )
+            }
+        }
+        )
+
+    }
 
 </script>
 </html>
