@@ -1,8 +1,7 @@
 package com.jk.util;
 
 import javax.imageio.ImageIO;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
@@ -10,7 +9,7 @@ import java.util.Random;
 
 public class CheckImgUtil implements Serializable {
 
-	public static void buildCheckImg(HttpServletRequest request,HttpServletResponse response) {
+	public static void buildCheckImg(HttpServletRequsert request,HttpServletResponse response) {
 		try {
 			checkImg(request,response);
 		} catch (Exception e) {
@@ -115,5 +114,5 @@ public class CheckImgUtil implements Serializable {
 	    int g = fc + random.nextInt(bc - fc);  
 	    int b = fc + random.nextInt(bc - fc);  
 	    return new Color(r, g, b);  
-	}  
+	}
 }
