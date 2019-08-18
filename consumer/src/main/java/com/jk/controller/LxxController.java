@@ -46,8 +46,25 @@ public class LxxController {
     @RequestMapping("addShop")
     @ResponseBody
     public  String addShop(RenZhengBean renZhengBean){
-        int i = lxxService.addShop(renZhengBean);
-        return null;
+
+        return lxxService.addShop(renZhengBean);
+    }
+
+
+    //新增企业认证
+    @RequestMapping("addEnterprise")
+    @ResponseBody
+    public  String addEnterprise(RenZhengBean renZhengBean){
+
+        return  lxxService.addEnterprise(renZhengBean);
+    }
+
+    //新增个人认证
+    @RequestMapping("addIndividual")
+    @ResponseBody
+    public  String addIndividual(RenZhengBean renZhengBean){
+
+        return lxxService.addIndividual(renZhengBean);
     }
 
 }

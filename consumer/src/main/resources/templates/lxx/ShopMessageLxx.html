@@ -49,7 +49,7 @@
     店铺简介&nbsp;&nbsp;<textarea name="dpdesc" rows="4" cols="40"></textarea><br>
 
     <p></p>
-    <input type="button" onclick="addUser()" value="保存">
+    <input type="button" onclick="addShop()" value="保存">
 
 </form>
 <p></p>
@@ -64,37 +64,26 @@
 
 </body>
 <script>
-    //新增提交
-    function savebook() {
-        $("#ShopMessage").form("submit",{
-            url:'../lxx/addShop',
-            success:function(data){
-                if(data){
 
-                    alert(11);
-
-                }else{
-                    $.messager.alert('提示','失败','error')
-                }
-            }
-        })
-    }
 
     //新增
 
-    function addUser(){
-                        $.ajax({
-                            url: '../lxx/addShop',
+    function addShop(){
+                        $.ajax(
+                            {
+                            url: '/lxx/addShop',
                             type: 'post',
                             cache:false,
                             data: $("#ShopMessage").serialize(),
                             success: function () {
 
                                 alert(11);
+                                window.location.href="/lxx/ShopMessage";
                             }, error: function () {
-                                alert("新增失败");
+                                alert("新增店铺失败");
                             }
-                        });
+                        }
+                        );
     }
 
 
