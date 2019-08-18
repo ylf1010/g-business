@@ -1,5 +1,6 @@
 package com.jk.controller;
 
+
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.jk.model.AreaBeanLxx;
 import com.jk.model.RenZhengBean;
@@ -10,7 +11,9 @@ import com.jk.service.LxxService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 
@@ -80,4 +83,5 @@ public class LxxController {
         List<AreaBeanLxx> findArea = lxxService.findArea(id);
         return findArea;
     }
+
 }

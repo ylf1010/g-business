@@ -1,4 +1,4 @@
-package com.jk.util;
+package com.jk.util.ztx;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
