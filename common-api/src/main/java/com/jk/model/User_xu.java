@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class User_xu implements Serializable {
       //客户user表
-    private  Integer id;
+    private  Integer keid;
     private  String img;
     private  String nickname;
     private  Integer phone;
@@ -84,8 +84,8 @@ public class User_xu implements Serializable {
         this.img = img;
     }
 
-    public Integer getId() {
-        return id;
+    public void setKeid(Integer keid) {
+        this.keid = keid;
     }
 
     public String getNickname() {
@@ -132,8 +132,8 @@ public class User_xu implements Serializable {
         return bqid;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public Integer getKeid() {
+        return keid;
     }
 
     public void setNickname(String nickname) {
