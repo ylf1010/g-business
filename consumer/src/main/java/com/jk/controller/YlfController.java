@@ -3,7 +3,7 @@ package com.jk.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.jk.model.User;
 import com.jk.service.LoginService;
-import com.jk.util.ztx.CheckImgUtil;
+import com.jk.util.CheckImgUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;

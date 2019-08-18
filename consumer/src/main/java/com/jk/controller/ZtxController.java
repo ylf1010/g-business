@@ -5,7 +5,7 @@ import com.jk.model.ZtxRole;
 import com.jk.model.ZtxTree;
 import com.jk.service.ZtxService;
 import com.jk.util.ParameUtil;
-import com.jk.util.ztx.TreeUtil;
+import com.jk.util.TreeUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
