@@ -6,6 +6,8 @@ import java.util.Date;
 public class YsqEvaluate implements Serializable {
     private Integer id;
 
+
+
     private String evaluate;
 
     private String content;

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.LxxMapper">
+
+<!-- 新增 店铺-->
+<insert id="addShop"   parameterType="com.jk.model.RenZhengBean">
+INSERT INTO dianpu_lxx(dpname,dplogo,dpphone,shengid,shiid,xianid,dpxxdz,dpdesc)
+VALUES(#{dpname},#{dplogo},#{dpphone},#{shengid},#{shiid},#{xianid},#{dpxxdz},#{dpdesc})
+</insert>
+
+    <!-- 新增 企业认证-->
+    <insert id="addEnterprise"   parameterType="com.jk.model.RenZhengBean">
+INSERT INTO dianpu_lxx(qyname,qyxydm,qyzs,qyphone,txfs,yhid,khsheng,khshi,khxian,khyhxm,khzh)
+VALUES(#{qyname},#{qyxydm},#{qyzs},#{qyphone},#{txfs},#{yhid},#{khsheng},#{khshi},#{khxian},#{khyhxm},#{khzh})
+</insert>
+
+    <!-- 新增 个人认证-->
+    <insert id="addIndividual"   parameterType="com.jk.model.RenZhengBean">
+INSERT INTO dianpu_lxx(gtname,gtsfzh,gtsfzqian,gtsfzbei,gtphone,txfs,yhid,khsheng,khshi,khxian,khyhxm,khzh)
+VALUES(#{gtname},#{gtsfzh},#{gtsfzqian},#{gtsfzbei},#{gtphone},#{txfs},#{yhid},#{khsheng},#{khshi},#{khxian},#{khyhxm},#{khzh})
+</insert>
+
+</mapper>

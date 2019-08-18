@@ -1,13 +1,20 @@
 
 <html>
 <head>
+<<<<<<< HEAD
+    <base href="<%=basePath%>">
+=======
 
+>>>>>>> 0e9ababdf33b8bc127cb441bdbf3549eff07178e
     <title>标题</title>
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">
     <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
     <meta http-equiv="description" content="This is my page">
+<<<<<<< HEAD
+    <%@ include file="/js/mycssorjs.jsp"%>
+=======
 
 
     <!-- 引入jquery -->
@@ -50,6 +57,7 @@
     <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
 
 
+>>>>>>> 0e9ababdf33b8bc127cb441bdbf3549eff07178e
     <style type="text/css">
         body{
             background: url("./js/image/a.jpg") no-repeat;
@@ -96,11 +104,28 @@
                     </div>
                 </div>
 
+<<<<<<< HEAD
+                <%--    <div class="form-group">
+=======
                 <!--    <div class="form-group">
+>>>>>>> 0e9ababdf33b8bc127cb441bdbf3549eff07178e
                 <label class="col-md-3 control-label">验证码</label>
                 <div class="col-md-9">
                     <input type="text" class="form-control" placeholder="请输入验证码" size="5" id="code"/>
                     <br/>
+<<<<<<< HEAD
+                    <img  src="<%=request.getContextPath()%>/user/getcode.do" id="img"  onclick="changeCode(this.src)">
+
+                </div>
+            </div> --%>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-4">
+                        <input type="button" class="form-control" class="btn-default" id="login"  value="登录"/>
+                    </div>
+                    <div class="col-md-offset-2 col-md-4">
+                        <input type="button" class="form-control" class="btn-default" onclick="zhu()"  value="注册"/>
+=======
                     <img  src="../user/getcode.do" id="img"  onclick="">
 
                 </div>
@@ -112,6 +137,7 @@
                     </div>
                     <div class="col-md-offset-2 col-md-4">
                         <input type="button" class="form-control"  id="zhu"  value="注册"/>
+>>>>>>> 0e9ababdf33b8bc127cb441bdbf3549eff07178e
                     </div>
                 </div>
             </form>
@@ -133,7 +159,11 @@
             var password = $("#password").val();
             var form = $("#userForm").serialize();
             $.ajax({
+<<<<<<< HEAD
+                url:"<%=path%>/music/loginUser.do",
+=======
                 url:"../ylf/loginUser",
+>>>>>>> 0e9ababdf33b8bc127cb441bdbf3549eff07178e
                 data:form,
                 type:"post",
                 success:function(data){
