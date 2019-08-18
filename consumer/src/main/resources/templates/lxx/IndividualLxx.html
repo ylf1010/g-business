@@ -110,10 +110,7 @@
                         </select></div>
                         <p></p>
                         <div>
-                            <!--开户省-->
-                            <select name="khsheng">
-                                <option value="4">省</option>
-                            </select>
+
                             <input type="text" id="sheng" class="easyui-combobox" value="省" name="provinceCode" />
                             -
                             <input type="text" id="shi" class="easyui-combobox" value="市" name="cityCode"/>
@@ -141,6 +138,12 @@
 </form>
 </body>
 <script>
+    $(function(){
+
+            initAddProvinceSelect();
+
+        }
+    );
 
     //新增个人认证
     function addIndividual(){
