@@ -10,24 +10,24 @@ public class LxxController {
     //店铺信息
     @RequestMapping("ShopMessage")
     public String dprz(){
-        return "ShopMessageLxx";
+        return "lxx/ShopMessageLxx";
     }
 
     //认证中转
     @RequestMapping("AuthenticationTransfer")
     public String rzzg(){
-        return "AuthenticationTransfer";
+        return "lxx/AuthenticationTransfer";
     }
 
     //企业认证
     @RequestMapping("Enterprise")
     public String qyrz(){
-        return "EnterpriseLxx";
+        return "lxx/EnterpriseLxx";
     }
 
     //个人认证
     @RequestMapping("Individual")
     public String grrz(){
-        return "IndividualLxx";
+        return "lxx/IndividualLxx";
     }
 }
