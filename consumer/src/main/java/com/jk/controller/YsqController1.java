@@ -2,9 +2,9 @@ package com.jk.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.jk.service.JiaoYiService;
-import com.jk.util.DataGridResult;
-import com.jk.util.PageUtil;
-import com.jk.util.ParameUtil;
+import com.jk.util.ztx.DataGridResult;
+import com.jk.util.ztx.PageUtil;
+import com.jk.util.ztx.ParameUtil;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;

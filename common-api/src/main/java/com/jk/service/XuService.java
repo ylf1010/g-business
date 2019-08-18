@@ -1,8 +1,8 @@
 package com.jk.service;
 
 import com.jk.model.Zu_xu;
-import com.jk.util.BootStrapUtil;
-import com.jk.util.RowsTotal;
+import com.jk.util.ztx.BootStrapUtil;
+import com.jk.util.ztx.RowsTotal;
 
 import java.util.List;
 
