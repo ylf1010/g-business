@@ -7,6 +7,8 @@ public class Refundysq {
 
     private Integer jiaoyiid;
 
+    private String jiaoyiname;
+
     private Integer unitprice;
 
     private Integer refund;
@@ -20,6 +22,14 @@ public class Refundysq {
     private Date applytime;
 
     private Integer status;
+
+    public String getJiaoyiname() {
+        return jiaoyiname;
+    }
+
+    public void setJiaoyiname(String jiaoyiname) {
+        this.jiaoyiname = jiaoyiname;
+    }
 
     public Integer getId() {
         return id;
