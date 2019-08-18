@@ -16,6 +16,9 @@ public interface ZtxUserRoleMapper {
     @Insert("insert into y_user_role(userid,roleid) values(#{userid},#{roleid})")
     int addurm(ZtxUserRole rpm);
 
-    @Update("update user set status=#{i} where id=#{id}")
-    void updatestatus(Integer id, int i);
+    @Update("update user set status=#{status} where id=#{id}")
+    void updatestatus(@Param("id") Integer id,@Param("status") Integer status);
+
+    @Update("update y_user_role set roleid=#{ids} where userid=#{id}")
+    void updatero(@Param("ids") Integer ids, @Param("id")Integer id);
 }

@@ -134,10 +134,64 @@ public class ZtxServiceImpl implements ZtxService{
 
     @Override
     public void updatestatus(Integer id, Integer status) {
-        if(status==1){
-            urm.updatestatus(id,2);
-        }else{
-            urm.updatestatus(id,1);
-        }
+            urm.updatestatus(id,status);
     }
+
+    @Override
+    public void updatero(Integer ids, Integer id) {
+       urm.updatero(ids,id);
+    }
+
+    @Override
+    public List<ZtxTree> querytreebyrid(Integer id, int pid) {
+        List <ZtxTree> list =queryOrgAll3(pid);
+        List <ZtxTree> list2= queryOrgAll2(id,pid);
+        for (int i = 0; i < list.size(); i++) {
+            for (int j = 0; j < list2.size(); j++) {
+                if(list.get(i).getId()==list2.get(j).getId()){
+                    list.get(i).getId();
+                    list.get(i).setChecked("true");
+                }
+            }
+            if(list.size()>0){
+                for (int s = 0; s < list.size(); s++) {
+                    List<ZtxTree>list3=querytreebyrid(id,list.get(s).getId());
+                    list.get(s).setNodes(list3);
+                }
+            }
+        }
+        return list;
+    }
+
+    public List<ZtxTree> queryOrgAll2(int id, int pid) {
+        // 根据pid查询子节点
+        List<ZtxTree> orgs = tm.queryOrgAll2(id,pid);
+        // 如果查询到子节点集合
+        if(orgs != null && orgs.size()>0){
+            // 循环集合，将每个机构对象的id作为pid 继续查询子节点集合
+            for (int i = 0; i < orgs.size(); i++) {
+                List<ZtxTree> orgs2 = queryOrgAll2(id,orgs.get(i).getId());
+                // 将查询的子节点集合放到该结构对象的children属性中
+                orgs.get(i).setNodes(orgs2);
+            }
+        }
+        return orgs;
+    }
+
+    public List<ZtxTree> queryOrgAll3(int pid) {
+        // 根据pid查询子节点
+        List<ZtxTree> orgs = tm.queryOrgAll3(pid);
+        // 如果查询到子节点集合
+        if(orgs != null && orgs.size()>0){
+            // 循环集合，将每个机构对象的id作为pid 继续查询子节点集合
+            for (int i = 0; i < orgs.size(); i++) {
+                List<ZtxTree> orgs2 = queryOrgAll3(orgs.get(i).getId());
+                // 将查询的子节点集合放到该结构对象的children属性中
+                orgs.get(i).setNodes(orgs2);
+            }
+        }
+        return orgs;
+    }
+
+
 }
