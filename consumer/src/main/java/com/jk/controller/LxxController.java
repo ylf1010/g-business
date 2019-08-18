@@ -1,5 +1,6 @@
 package com.jk.controller;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.jk.model.RenZhengBean;
 
 
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("lxx")
 public class LxxController {
 
-    @Autowired
+    @Reference
     private LxxService lxxService;
 
     //店铺信息
