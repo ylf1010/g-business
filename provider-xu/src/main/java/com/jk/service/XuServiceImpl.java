@@ -5,8 +5,8 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.jk.dao.XuDao;
 import com.jk.model.User_xu;
 import com.jk.model.Zu_xu;
-import com.jk.util.ztx.BootStrapUtil;
-import com.jk.util.ztx.RowsTotal;
+import com.jk.util.BootStrapUtil;
+import com.jk.util.RowsTotal;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;
