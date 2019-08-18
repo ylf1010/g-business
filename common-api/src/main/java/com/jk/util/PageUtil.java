@@ -8,18 +8,20 @@ import java.util.List;
  *
  * @author yaoli
  */
+
 public class PageUtil implements Serializable {
 
-    // 每页多少条
+
     private Integer pageCount = 2;
-    //当前第几页
+
     private Integer currentPage = 1;
 
-    // 用来存 查出的当页数据
+
     private List list;
 
-    // 总条数
+
     private Integer sumSize;
+
 
     // 总页数
     private Integer sumPage;
@@ -65,6 +67,7 @@ public class PageUtil implements Serializable {
         this.currentPage = currentPage;
     }
 
+
     /**
      * 总条数，当前页数，每页多少条
      *
@@ -96,6 +99,7 @@ public class PageUtil implements Serializable {
         }
 
     }
+
 
     //分页方法：设置起始条数
     public Integer getFirstResultCount() {

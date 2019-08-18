@@ -12,44 +12,17 @@ public class ParameUtil implements Serializable {
     private Integer pageSize;
     private String sortName;
     private String sortOrder;
-    private String userName;
-    private Integer leagid;
-    private String productid;
-    private Integer status;
+    private String bookName;
 
-    public Integer getStatus() {
-        return status;
+    public String getBookName() {
+        return bookName;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
     }
 
-    public String getProductid() {
-		return productid;
-	}
-
-	public void setProductid(String productid) {
-		this.productid = productid;
-	}
-
-	public Integer getLeagid() {
-		return leagid;
-	}
-
-	public void setLeagid(Integer leagid) {
-		this.leagid = leagid;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public Integer getPageNumber() {
+    public Integer getPageNumber() {
         return pageNumber;
     }
 

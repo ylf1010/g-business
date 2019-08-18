@@ -1,6 +1,7 @@
 package com.jk.dao;
 
 import com.jk.model.User;
+import org.apache.ibatis.annotations.Select;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +15,6 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+@Select("select * from user where username = #{username}")
+    User loginUser(User user);
 }
