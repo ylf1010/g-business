@@ -1,4 +1,4 @@
-package com.jk.util.ztx;
+package com.jk.util;
 
 import java.io.Serializable;
 import java.util.List;

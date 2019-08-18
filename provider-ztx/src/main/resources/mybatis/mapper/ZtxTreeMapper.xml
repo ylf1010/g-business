@@ -20,4 +20,8 @@
       AND   tu.id= 1
     GROUP BY tp.name
   </select>
+
+  <select id="querytreeall" resultMap="BaseResultMap">
+    select * from y_tree
+  </select>
 </mapper>

@@ -1,4 +1,4 @@
-package com.jk.util.ztx;
+package com.jk.util;
 
 import java.io.Serializable;
 
@@ -13,6 +13,24 @@ public class ParameUtil implements Serializable {
     private String sortName;
     private String sortOrder;
     private String bookName;
+    private String rolename;
+    private String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getRolename() {
+        return rolename;
+    }
+
+    public void setRolename(String rolename) {
+        this.rolename = rolename;
+    }
 
     public String getBookName() {
         return bookName;
