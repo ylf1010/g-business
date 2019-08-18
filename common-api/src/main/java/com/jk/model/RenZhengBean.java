@@ -1,6 +1,8 @@
 package com.jk.model;
 
-public class RenZhengBean {
+import java.io.Serializable;
+
+public class RenZhengBean implements Serializable {
     private Integer id;
 
     private String dpname;

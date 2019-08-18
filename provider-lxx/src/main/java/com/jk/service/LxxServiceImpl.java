@@ -1,7 +1,9 @@
 package com.jk.service;
 
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
+
 import com.jk.dao.LxxMapper;
 import com.jk.model.RenZhengBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +15,12 @@ public class LxxServiceImpl implements LxxService{
     @Autowired
     private LxxMapper lxxMapper;
 
-    //新增店铺
     @Override
-    public void addShop(RenZhengBean renZhengBean) {
-        LxxMapper.addShop(renZhengBean);
+    public int addShop(RenZhengBean renZhengBean) {
+
+        int i = lxxMapper.addShop(renZhengBean);
+        return i;
     }
+    //新增店铺
+
 }

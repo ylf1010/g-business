@@ -9,9 +9,7 @@ import com.jk.service.LxxService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("lxx")
@@ -22,39 +20,34 @@ public class LxxController {
 
     //店铺信息
     @RequestMapping("ShopMessage")
-    public String dprz(){
+    public String dprz() {
         return "lxx/ShopMessageLxx";
     }
 
     //认证中转
     @RequestMapping("AuthenticationTransfer")
-    public String rzzg(){
+    public String rzzg() {
         return "lxx/AuthenticationTransferLxx";
     }
 
     //企业认证
     @RequestMapping("Enterprise")
-    public String qyrz(){
+    public String qyrz() {
         return "lxx/EnterpriseLxx";
     }
 
     //个人认证
     @RequestMapping("Individual")
-    public String grrz(){
+    public String grrz() {
         return "lxx/IndividualLxx";
     }
 
     //新增//修改
     @RequestMapping("addShop")
     @ResponseBody
-    public Boolean addBookList(RenZhengBean renZhengBean) {
-        try {
-                lxxService.addShop(renZhengBean);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+    public  String addShop(RenZhengBean renZhengBean){
+        int i = lxxService.addShop(renZhengBean);
+        return null;
     }
 
 }

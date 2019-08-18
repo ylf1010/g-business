@@ -3,7 +3,7 @@
 <mapper namespace="com.jk.dao.LxxMapper">
 
 <!-- 新增 -->
-<insert id="addShop" parameterType="com.jk.model.RenZhengBean">
+<insert id="addShop"   parameterType="com.jk.model.RenZhengBean">
 INSERT INTO dianpu_lxx(dpname,dplogo,dpphone,shengid,shiid,xianid,dpxxdz,dpdesc)
 VALUES(#{dpname},#{dplogo},#{dpphone},#{shengid},#{shiid},#{xianid},#{dpxxdz},#{dpdesc})
 </insert>

@@ -8,5 +8,6 @@ import com.jk.model.RenZhengBean;
 
 public interface LxxService {
 
-    void addShop(RenZhengBean renZhengBean);
+
+    int addShop(RenZhengBean renZhengBean);
 }
