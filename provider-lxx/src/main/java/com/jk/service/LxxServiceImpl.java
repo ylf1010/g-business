@@ -5,8 +5,11 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
 
 import com.jk.dao.LxxMapper;
+import com.jk.model.AreaBeanLxx;
 import com.jk.model.RenZhengBean;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 
 @Service
@@ -16,22 +19,31 @@ public class LxxServiceImpl implements LxxService{
     private LxxMapper lxxMapper;
     //新增店铺
     @Override
-    public String addShop(RenZhengBean renZhengBean) {
+    public int addShop(RenZhengBean renZhengBean) {
 
+        int i = lxxMapper.addShop(renZhengBean);
+        return i;
 
-        return lxxMapper.addShop(renZhengBean);
     }
     //新增企业认证
     @Override
-    public String addEnterprise(RenZhengBean renZhengBean) {
+    public int addEnterprise(RenZhengBean renZhengBean) {
+        int i = lxxMapper.addEnterprise(renZhengBean);
+        return i;
 
-        return lxxMapper.addEnterprise(renZhengBean);
     }
     //新增个人认证
     @Override
-    public String addIndividual(RenZhengBean renZhengBean) {
+    public int addIndividual(RenZhengBean renZhengBean) {
+        int i = lxxMapper.addIndividual(renZhengBean);
+        return i;
 
-        return lxxMapper.addIndividual(renZhengBean);
+    }
+
+    //三级联动
+    @Override
+    public List<AreaBeanLxx> findArea(Integer id) {
+        return lxxMapper.findArea(id);
     }
 
 
