@@ -5,10 +5,13 @@ import com.jk.model.RenZhengBean;
 
 
 import com.jk.service.LxxService;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("lxx")
@@ -53,4 +56,5 @@ public class LxxController {
             return false;
         }
     }
+
 }
