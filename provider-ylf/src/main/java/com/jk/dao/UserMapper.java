@@ -17,4 +17,6 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 @Select("select * from user where username = #{username}")
     User loginUser(User user);
+
+    void addregisUser(User user);
 }
