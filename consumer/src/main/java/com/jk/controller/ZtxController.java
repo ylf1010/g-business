@@ -81,6 +81,18 @@ public class ZtxController {
         list = TreeUtil.getFatherNode(list);
         return list;
     }
+    //根据 角色id查询对应权限
+    @RequestMapping("hxtree")
+    public String  hxtree(Integer roleid, Model model){
+        model.addAttribute("id",roleid);
+        return "ztx/hxtree";
+    }
+    @RequestMapping("cxbyridtree")
+    @ResponseBody
+    public List<ZtxTree> cxbyridtree(Integer id){
+        return zs.querytreebyrid(id,0);
+    }
+
     //根据 用户id查询对应角色
     @RequestMapping("editrole")
     @ResponseBody
@@ -97,6 +109,7 @@ public class ZtxController {
         return "ztx/hxrole";
     }
 
+
     @RequestMapping("updatetree")
     @ResponseBody
     public void updatetree(Integer[] ids,Integer roleid){
@@ -106,6 +119,11 @@ public class ZtxController {
     @ResponseBody
     public void updaterole(Integer[] ids,Integer id){
         zs.updaterole(ids,id);
+    }
+    @RequestMapping("updatero")
+    @ResponseBody
+    public void updatero(Integer ids,Integer id){
+        zs.updatero(ids,id);
     }
 
     //新增角色
@@ -129,7 +147,6 @@ public class ZtxController {
     @RequestMapping("updatestatus")
     @ResponseBody
     public void updatestatus(Integer id,Integer status){
-        System.out.println(id+status);
         zs.updatestatus(id,status);
     }
 

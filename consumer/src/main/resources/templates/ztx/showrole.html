@@ -21,7 +21,6 @@
     <!-- 引入fileinput的css -->
     <link type="text/css" rel="stylesheet" href="../js/fileinput/css/fileinput.min.css" />
     <!-- 引入my97 -->
-    <script type="text/javascript" src="../js/my97/WdatePicker.js"></script>
     <!-- 引入bootstrap的js-->
     <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
     <!-- 引入bootstrap的js-->
@@ -39,8 +38,6 @@
     <script type="text/javascript" src="../js/fileinput/js/locales/zh.js"></script>
     <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
     <!--  引入上传图片的js -->
-    <script src="../js/uploadify/jquery.uploadify.min.js"></script>
-    <link rel="stylesheet" href="../js/uploadify/uploadify.css">
 
 </head>
 <body >
@@ -136,7 +133,7 @@
                 {field:'rolecount',title:'员工数量',width:$(this).width() * 0.2},
                 {field:'createtime',title:'创建日期',width:$(this).width() * 0.2},
                 {field:'cz',title:'操作',width:$(this).width() * 0.2,formatter: function(value,row,index){
-                        return '<button type="button" class="btn btn-Warning " onclick="edittree('+row.roleid+')">绑定权限</button>';
+                        return '<button type="button" class="btn btn-Warning " onclick="editqx('+row.roleid+')">绑定权限</button>';
                 }},
             ]
             ],
@@ -209,11 +206,13 @@
             success: function (data) {
                 $("#myModal2").modal("show");
                 //查询成功回调，tree展示
+
                 $("#jiaose").treeview({
                     //data属性 树节点信息 json数组
                     data: data,
                     //是否显示复选框
                     showCheckbox : true,
+                    checkedIcon:"glyphicon glyphicon-check",
                 })
             },
             error:function(){
@@ -269,5 +268,41 @@
         }
     }
 
+    function editqx(rid){
+        bootbox.dialog({
+            title: '绑定权限',
+            message: createAddContent("../ztx/hxtree?id="+rid),
+            closeButton: true,//是否显示关闭按钮
+            buttons: {
+                "success": {
+                    "label": "<i class='icon-ok'></i> 保存",
+                    "className": "btn-sm btn-success",
+                    "callback": function () {
+                        var a=$('#edittree').treeview('getChecked');
+                        var ids=""
+                        for(var i=0;i<a.length;i++){
+                            ids+=","+a[i].id
+                        }
+                        ids=ids.substring(1)
+                        $.ajax({
+                            url:"../ztx/updatetree",
+                            type:"post",
+                            data:{"roleid":$("#rid").val(),"ids":ids},
+                            success:function(){
+                                $('#myModal2').modal('hide'); //成功后关闭弹框
+                                $('#dataGrid2').bootstrapTable("refresh");
+                            }
+                        })
+                    }
+                },
+                "cancel": {
+                    "label": "<i class='icon-info'></i> 取消",
+                    "className": "btn-sm btn-danger",
+                    "callback": function () {
+                    }
+                }
+            }
+        });
+    }
 </script>
 </html>
