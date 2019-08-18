@@ -3,21 +3,27 @@ package com.jk.util;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * 接受分页参数
+ *
+ * @author yaoli
+ */
 
 public class PageUtil implements Serializable {
 
- 
+
     private Integer pageCount = 2;
-    
+
     private Integer currentPage = 1;
 
-   
+
     private List list;
 
-  
+
     private Integer sumSize;
 
-    
+
+    // 总页数
     private Integer sumPage;
 
 
@@ -61,7 +67,14 @@ public class PageUtil implements Serializable {
         this.currentPage = currentPage;
     }
 
-  
+
+    /**
+     * 总条数，当前页数，每页多少条
+     *
+     * @param sumSize
+     * @param currentPage
+     * @param pageCount
+     */
     public PageUtil(Integer sumSize, Integer currentPage, Integer pageCount) {
         super();
 
@@ -88,6 +101,7 @@ public class PageUtil implements Serializable {
     }
 
 
+    //分页方法：设置起始条数
     public Integer getFirstResultCount() {
 
         Integer firstResultCount = (getCurrentPage() - 1) * getPageCount();
