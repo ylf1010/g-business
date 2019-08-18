@@ -18,7 +18,7 @@ public class Jifen_xu implements Serializable {
     private  String  glname;
     private  String  cause;
     private  Integer  jifen;
-    private  Integer  sum;
+    private  Integer  jfsum;
 
     public Integer getJfid() {
         return jfid;
@@ -52,8 +52,8 @@ public class Jifen_xu implements Serializable {
         return jifen;
     }
 
-    public Integer getSum() {
-        return sum;
+    public Integer getJfsum() {
+        return jfsum;
     }
 
     public void setJfid(Integer jfid) {
@@ -88,7 +88,7 @@ public class Jifen_xu implements Serializable {
         this.jifen = jifen;
     }
 
-    public void setSum(Integer sum) {
-        this.sum = sum;
+    public void setJfsum(Integer jfsum) {
+        this.jfsum = jfsum;
     }
 }

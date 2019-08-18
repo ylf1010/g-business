@@ -7,6 +7,16 @@ public class Member_xu implements Serializable {
     private  Integer  hyid;
     private  String  rank;
     private  Integer  price;
+    private  String  tequan;
+
+
+    public String getTequan() {
+        return tequan;
+    }
+
+    public void setTequan(String tequan) {
+        this.tequan = tequan;
+    }
 
     public Integer getHyid() {
         return hyid;

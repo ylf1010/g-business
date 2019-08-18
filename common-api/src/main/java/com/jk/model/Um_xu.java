@@ -18,6 +18,64 @@ public class Um_xu implements Serializable {
     @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")   // 处
     private   Date bddate;
 
+      //客户表
+      private   Integer  keid;
+      private   String  img;
+     private   String  nickname;
+     private   String  phone;
+     //会员表
+     private   String  rank;
+    private   Integer  price;
+
+    public Integer getKeid() {
+
+        return keid;
+    }
+
+    public void setKeid(Integer keid) {
+        this.keid = keid;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getRank() {
+        return rank;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
     public Integer getUmid() {
         return umid;
     }

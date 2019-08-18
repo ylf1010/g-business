@@ -3,12 +3,12 @@ package com.jk.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.jk.dao.XuDao;
-import com.jk.model.User_xu;
-import com.jk.model.Zu_xu;
+import com.jk.model.*;
 import com.jk.util.BootStrapUtil;
 import com.jk.util.RowsTotal;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +23,6 @@ public class XuServiceImpl  implements  XuService{
         //客户列表查询
     @Override
     public RowsTotal xkehulist(BootStrapUtil bt) {
-
         Map map=new HashMap();
         //条件
         map.put("name",bt.getName());
@@ -64,12 +63,71 @@ public class XuServiceImpl  implements  XuService{
         for (int i=0; i<ids.length;i++){
             xu.xupdate1(ids[i],a);
         }
-
     }
 
     //新建分组
     @Override
     public void xaddfenzu(Zu_xu zu) {
         xu.xaddfenzu(zu);
+    }
+
+    //客户详情查询
+    @Override
+    public List<User_xu> xkehuxiangqing(Integer keid) {
+        return xu.xkehuxiangqing(keid);
+    }
+
+    //详情页  修改客户信息
+    @Override
+    public void xupdatekehu(User_xu userx) {
+        xu.xupdatekehu(userx);
+    }
+
+    //详情页  加积分
+    @Override
+    public void xupdatejifen(Jifen_xu jifen) {
+        jifen.setJftype(2);
+        jifen.setCzdate(new Date());
+        jifen.setGlname("管理员");  //默认管理 可根据登录的管理员获取
+        xu.xupdatejifen(jifen);
+    }
+
+
+
+
+
+                //会员
+    //会员列表查询
+    @Override
+    public RowsTotal uhiuyuancha(BootStrapUtil bt) {
+        Map map=new HashMap();
+        //条件
+        map.put("name","%"+bt.getName()+"%");
+        //分页
+        Integer total=xu.uhiuyuancount(map);  //总条数
+        map.put("sta", (bt.getPageNumber()-1)*bt.getPageSize());
+        map.put("end", bt.getPageSize());
+        List<Um_xu>  list=xu.uhiuyuancha(map);
+        RowsTotal  r=new RowsTotal();
+        r.setTotal(total);
+        r.setRows(list);
+        return r;
+    }
+
+    //批量   取消会员
+    @Override
+    public void quxiaohiuyuan(String[] ids) {
+     Integer a=   xu.quxiaohiuyuan(ids);
+        if (a > 0){
+            xu.deleteum_xu(ids);  //更改客户同时删除对应会员中间表信息
+        }
+    }
+
+
+
+    //会员设置 查询
+    @Override
+    public List<Member_xu> uHiuYuanShezhi() {
+        return xu.uHiuYuanShezhi();
     }
 }

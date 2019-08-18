@@ -11,7 +11,7 @@ public class User_xu implements Serializable {
     private  Integer keid;
     private  String img;
     private  String nickname;
-    private  Integer phone;
+    private  String phone;
     private  String sex;
     private  String source;
     private  String weixin;
@@ -92,7 +92,7 @@ public class User_xu implements Serializable {
         return nickname;
     }
 
-    public Integer getPhone() {
+    public String getPhone() {
         return phone;
     }
 
@@ -140,7 +140,7 @@ public class User_xu implements Serializable {
         this.nickname = nickname;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
