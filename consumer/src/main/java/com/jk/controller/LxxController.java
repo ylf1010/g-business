@@ -16,7 +16,7 @@ public class LxxController {
     //认证中转
     @RequestMapping("AuthenticationTransfer")
     public String rzzg(){
-        return "lxx/AuthenticationTransfer";
+        return "lxx/AuthenticationTransferLxx";
     }
 
     //企业认证
