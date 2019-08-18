@@ -18,7 +18,7 @@ public class RefundServiceImpl implements RefundService {
 
     @Override
     public PageUtil cha(ParameUtil parameUtil) {
-        PageHelper.startPage(parameUtil.getPageNumber(),parameUtil.getp);
+        PageHelper.startPage(parameUtil.getPageNumber(),parameUtil.getPageSize());
         List<Refundysq> list = refundysqMapper.cha(parameUtil);
         PageInfo<Refundysq> info = new PageInfo<>(list);
         PageUtil pageUtil = new PageUtil((int)info.getTotal(),parameUtil.getPageNumber(),parameUtil.getPageSize());
