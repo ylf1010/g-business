@@ -32,4 +32,8 @@ public interface ZtxService {
     void deleteuser(String ids);
 
     void updatestatus(Integer id, Integer status);
+
+    void updatero(Integer ids, Integer id);
+
+    List<ZtxTree> querytreebyrid(Integer id, int pid);
 }
