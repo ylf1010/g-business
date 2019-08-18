@@ -1,7 +1,7 @@
 package com.jk.dao;
 
 import com.jk.model.YsqJiaoYi;
-import com.jk.util.ParameUtil;
+import com.jk.util.ztx.ParameUtil;
 
 import java.util.List;
 

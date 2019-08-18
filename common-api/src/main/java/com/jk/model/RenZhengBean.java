@@ -1,6 +1,8 @@
 package com.jk.model;
 
-public class RenZhengBean {
+import java.io.Serializable;
+
+public class RenZhengBean implements Serializable {
     private Integer id;
 
     private String dpname;
@@ -29,7 +31,7 @@ public class RenZhengBean {
 
     private String gtsfzbei;
 
-    private String gephone;
+    private String gtphone;
 
     private String txfs;
 
@@ -39,11 +41,11 @@ public class RenZhengBean {
 
     private String khshi;
 
-    private String ksihuxian;
+    private String khxian;
 
     private String khyhxm;
 
-    private String khkh;
+    private String khzh;
 
     private String qyname;
 
@@ -175,12 +177,12 @@ public class RenZhengBean {
         this.gtsfzbei = gtsfzbei == null ? null : gtsfzbei.trim();
     }
 
-    public String getGephone() {
-        return gephone;
+    public String getGtphone() {
+        return gtphone;
     }
 
-    public void setGephone(String gephone) {
-        this.gephone = gephone == null ? null : gephone.trim();
+    public void setGtphone(String gtphone) {
+        this.gtphone = gtphone == null ? null : gtphone.trim();
     }
 
     public String getTxfs() {
@@ -215,12 +217,12 @@ public class RenZhengBean {
         this.khshi = khshi == null ? null : khshi.trim();
     }
 
-    public String getKsihuxian() {
-        return ksihuxian;
+    public String getKhxian() {
+        return khxian;
     }
 
-    public void setKsihuxian(String ksihuxian) {
-        this.ksihuxian = ksihuxian == null ? null : ksihuxian.trim();
+    public void setKhxian(String khxian) {
+        this.khxian = khxian == null ? null : khxian.trim();
     }
 
     public String getKhyhxm() {
@@ -231,12 +233,12 @@ public class RenZhengBean {
         this.khyhxm = khyhxm == null ? null : khyhxm.trim();
     }
 
-    public String getKhkh() {
-        return khkh;
+    public String getKhzh() {
+        return khzh;
     }
 
-    public void setKhkh(String khkh) {
-        this.khkh = khkh == null ? null : khkh.trim();
+    public void setKhzh(String khzh) {
+        this.khzh = khzh == null ? null : khzh.trim();
     }
 
     public String getQyname() {
