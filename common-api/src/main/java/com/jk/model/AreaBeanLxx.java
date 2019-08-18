@@ -1,6 +1,8 @@
 package com.jk.model;
 
-public class AreaBeanLxx {
+import java.io.Serializable;
+
+public class AreaBeanLxx implements Serializable {
     private Integer id;
 
     private String areaname;

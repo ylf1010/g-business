@@ -4,6 +4,19 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js2/easyui1.5/jquery.easyui.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/js2/easyui1.5/themes/icon.css" >
+    <!-- 主题 -->
+    <link rel="stylesheet" href="/js2/easyui1.5/themes/default/easyui.css" >
+    <!-- 方言 -->
+    <script type="text/javascript" src="/js2/easyui1.5/locale/easyui-lang-zh_CN.js"></script>
+    <!-- 图片  -->
+    <script src="/js2/uploadify/jquery.uploadify.js"></script>
+    <link rel="stylesheet" href="/js2/uploadify/uploadify.css" >
+    <!-- 富文本 -->
+    <script src="/js2/kindeditor-4.1.10/kindeditor-all.js"></script>
+    <link rel="stylesheet" href="/js2/kindeditor-4.1.10/themes/default/default.css" >
 </head>
 <body>
 <div  style="height: 30px;background: #8c8c8c" >店铺认证</div>
@@ -94,18 +107,11 @@
                    </select></div>
                    <p></p>
                         <div>
-                       <!--开户省-->
-                       <select name="khsheng">
-                        <option value="3">省</option>
-                       </select>
-                       <!--开户市-->
-                       <select name="khshi">
-                           <option value="3">市</option>
-                       </select>
-                       <!--开户县-->
-                       <select name="khxian">
-                           <option value="3">县</option>
-                       </select>
+                            <input type="text" id="sheng" class="easyui-combobox" value="省" name="provinceCode" />
+                            -
+                            <input type="text" id="shi" class="easyui-combobox" value="市" name="cityCode"/>
+                            -
+                            <input type="text" id="xian" class="easyui-combobox" value="县" name="cityCode"/>
                        </div>
                    <p></p>
                    <!--开户支行名称-->
@@ -146,6 +152,33 @@
             }
         }
         );
+    }
+
+    //地区三级
+    function initAddProvinceSelect(){
+        $("#sheng").combobox({
+                url:'/lxx/findArea?id=0',
+                textField:'areaname',
+                valueField:'id',
+                onChange:function(newValue,oldValue){
+                    $("#shi").combobox({
+                            url:'/lxx/findArea?id='+newValue,
+                            textField:'areaname',
+                            valueField:'id',
+                            onChange:function(newValue,oldValue){
+                                $("#xian").combobox({
+                                        url:'/lxx/findArea?id='+newValue,
+                                        textField:'areaname',
+                                        valueField:'id'
+                                    }
+                                )
+                            }
+                        }
+                    )
+                }
+            }
+        )
+
     }
 </script>
 </html>

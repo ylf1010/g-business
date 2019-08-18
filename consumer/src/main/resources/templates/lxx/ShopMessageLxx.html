@@ -42,11 +42,11 @@
     联系方式&nbsp;&nbsp;<input type="text" name="dpphone" size="28"  value="请输入客户可查看的联系方式" onfocus="javascript:if(this.value=='请输入客户可查看的联系方式')this.value='';" ><br/>
     <p></p>
     经营地址&nbsp;
-    <input type="text" id="sheng" class="easyui-combobox" name="provinceCode" />
+    <input type="text" id="sheng" class="easyui-combobox" value="省" name="provinceCode" />
     -
-    <input type="text" id="shi" class="easyui-combobox" name="cityCode"/>
+    <input type="text" id="shi" class="easyui-combobox" value="市" name="cityCode"/>
     -
-    <input type="text" id="xian" class="easyui-combobox" name="cityCode"/>
+    <input type="text" id="xian" class="easyui-combobox" value="县" name="cityCode"/>
     <br/>
     <p></p>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -98,20 +98,20 @@
                         );
     }
 
-    //新增二级联动
+    //地区三级
     function initAddProvinceSelect(){
         $("#sheng").combobox({
-            url:'../tree/findArea.do?id=0',
+            url:'/lxx/findArea?id=0',
             textField:'areaname',
             valueField:'id',
             onChange:function(newValue,oldValue){
                 $("#shi").combobox({
-                    url:'../tree/findArea.do?id='+newValue,
+                    url:'/lxx/findArea?id='+newValue,
                     textField:'areaname',
                     valueField:'id',
                         onChange:function(newValue,oldValue){
                             $("#xian").combobox({
-                                    url:'../tree/findArea.do?id='+newValue,
+                                    url:'/lxx/findArea?id='+newValue,
                                     textField:'areaname',
                                     valueField:'id'
                                 }
