@@ -33,6 +33,7 @@ import com.jk.util.DataGridResult;
 import com.jk.util.PageUtil;
 import com.jk.util.ParameUtil;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -100,6 +101,20 @@ public class LyClassifyController {
     @ResponseBody
     public  String delClassify(String flids){
         classifyService.delClassify(flids);
+        return "ly/classify";
+    }
+    //修改 回显
+    @RequestMapping("xgClassifypage")
+    public String xgMusicpage(Integer flid, Model model){
+        Classify classify=classifyService.xgClassifypage(flid);
+        model.addAttribute("classify", classify);
+        return "ly/updclassify";
+    }
+    //修改
+    @RequestMapping("updClassify")
+    @ResponseBody
+    public String updClassify(Classify classify){
+        classifyService.updClassify(classify);
         return "ly/classify";
     }
 
