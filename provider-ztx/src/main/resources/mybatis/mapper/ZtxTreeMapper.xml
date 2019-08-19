@@ -7,8 +7,6 @@
     <result column="pid" property="pid" jdbcType="INTEGER" />
     <result column="text" property="text" jdbcType="VARCHAR" />
     <result column="url" property="url" jdbcType="VARCHAR" />
-    <result column="state" property="state" jdbcType="VARCHAR" />
-    <result column="checked" property="checked" jdbcType="VARCHAR" />
   </resultMap>
 
   <select id="querytree" resultType="com.jk.model.ZtxTree"  >

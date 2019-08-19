@@ -81,12 +81,13 @@ public class ZtxController {
         list = TreeUtil.getFatherNode(list);
         return list;
     }
-    //根据 角色id查询对应权限
+    //根据 角色id跳转到回显页面
     @RequestMapping("hxtree")
     public String  hxtree(Integer roleid, Model model){
         model.addAttribute("id",roleid);
         return "ztx/hxtree";
     }
+    //根据 角色id查询对应权限
     @RequestMapping("cxbyridtree")
     @ResponseBody
     public List<ZtxTree> cxbyridtree(Integer id){
@@ -100,32 +101,37 @@ public class ZtxController {
         List<ZtxRole> list = zs.editrole(id);
         return list;
     }
-    //根据 用户id查询对应角色
+    //根据用户id查询对应角色
     @RequestMapping("hxrole")
-    public String  hxrole(Integer id, Model model){
+    public String  hxrole(Integer id, Model model,HttpServletRequest request){
         List<ZtxRole> list = zs.editrole(id);
+        List<String> list1 = zs.queryrolebyid(id);
+        request.getSession().setAttribute("roleid",list1.get(0));
         model.addAttribute("id",id);
         model.addAttribute("list",list);
         return "ztx/hxrole";
     }
-
-
+    //绑定权限
     @RequestMapping("updatetree")
     @ResponseBody
     public void updatetree(Integer[] ids,Integer roleid){
         zs.updatetree(ids,roleid);
     }
+    //绑定角色
     @RequestMapping("updaterole")
     @ResponseBody
     public void updaterole(Integer[] ids,Integer id){
         zs.updaterole(ids,id);
     }
+    //绑定角色
     @RequestMapping("updatero")
     @ResponseBody
-    public void updatero(Integer ids,Integer id){
+    public void updatero(Integer ids,Integer id,HttpServletRequest request) {
+        String roleid = (String)request.getSession().getAttribute("roleid");
+        int i = Integer.parseInt(roleid);
+        zs.updaterolecount(i,ids);
         zs.updatero(ids,id);
     }
-
     //新增角色
     @RequestMapping("addrole")
     @ResponseBody
@@ -144,6 +150,7 @@ public class ZtxController {
     public void deleteuser(String ids){
         zs.deleteuser(ids);
     }
+    //修改状态
     @RequestMapping("updatestatus")
     @ResponseBody
     public void updatestatus(Integer id,Integer status){

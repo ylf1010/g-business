@@ -36,4 +36,8 @@ public interface ZtxService {
     void updatero(Integer ids, Integer id);
 
     List<ZtxTree> querytreebyrid(Integer id, int pid);
+
+    List<String> queryrolebyid(Integer id);
+
+    void updaterolecount(int i, Integer ids);
 }
