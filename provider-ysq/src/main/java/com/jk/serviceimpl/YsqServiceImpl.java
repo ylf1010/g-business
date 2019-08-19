@@ -29,6 +29,7 @@ public class YsqServiceImpl implements YsqService {
         Map map = new HashMap();
         map.put("start",(parame.getPageNumber()-1)*parame.getPageSize());
         map.put("end",parame.getPageSize());
+        map.put("state",parame.getState());
         Integer count = jiaoYiMapper.findjiaoyicount(map);
         List<YsqJiaoYi> list = jiaoYiMapper.cha(map);
         PageInfo<YsqJiaoYi> info = new PageInfo<>(list);
@@ -46,5 +47,11 @@ public class YsqServiceImpl implements YsqService {
         PageUtil pageUtil = new PageUtil((int)info.getTotal(),parameUtil.getPageNumber(),parameUtil.getPageSize());
         pageUtil.setList(list);
         return pageUtil;
+    }
+
+    @Override
+    public void beizhu(YsqJiaoYi ysqModel) {
+
+        jiaoYiMapper.beizhu(ysqModel);
     }
 }

@@ -7,6 +7,7 @@ import com.jk.util.DataGridResult;
 import com.jk.util.PageUtil;
 import com.jk.util.ParameUtil;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -17,7 +18,7 @@ public class YsqController2 {
     private RefundService refundService;
     @RequestMapping("cha")
     @ResponseBody
-    public DataGridResult cha(ParameUtil parameUtil){
+    public DataGridResult cha(@RequestBody ParameUtil parameUtil){
         PageUtil pageUtil = refundService.cha(parameUtil);
         DataGridResult result = new DataGridResult();
         result.setTotal(pageUtil.getSumSize());
@@ -28,5 +29,16 @@ public class YsqController2 {
     public String tiao(){
         return "cha2";
     }
+    @RequestMapping("xiu")
+    @ResponseBody
+    public void xiu(Integer id,Integer num){
 
+        refundService.xiu(id,num);
+    }
+    @RequestMapping("xiuall")
+    @ResponseBody
+    public void xiuAll(String id[],Integer num){
+
+        refundService.xiuAll(id,num);
+    }
 }

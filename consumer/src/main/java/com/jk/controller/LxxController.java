@@ -43,28 +43,28 @@ public class LxxController {
     }
 
     //新增//修改
-    @RequestMapping("addShop")
+    /*@RequestMapping("addShop")
     @ResponseBody
     public  String addShop(RenZhengBean renZhengBean){
 
         return lxxService.addShop(renZhengBean);
-    }
+    }*/
 
 
     //新增企业认证
-    @RequestMapping("addEnterprise")
+    /*@RequestMapping("addEnterprise")
     @ResponseBody
     public  String addEnterprise(RenZhengBean renZhengBean){
 
         return  lxxService.addEnterprise(renZhengBean);
-    }
+    }*/
 
     //新增个人认证
-    @RequestMapping("addIndividual")
+    /*@RequestMapping("addIndividual")
     @ResponseBody
     public  String addIndividual(RenZhengBean renZhengBean){
 
         return lxxService.addIndividual(renZhengBean);
-    }
+    }*/
 
 }

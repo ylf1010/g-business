@@ -10,10 +10,11 @@ import java.util.Map;
 
 public interface YsqJiaoYiMapper {
 
-   @Select("select * from jiaoyi_ysq limit #{start},#{end}")
     List<YsqJiaoYi> cha(Map map);
  @Select("select count(*) from jiaoyi_ysq")
     Integer findjiaoyicount(Map map);
 
     List<YsqEvaluate> cha2(ParameUtil parameUtil);
+
+    void beizhu(YsqJiaoYi ysqModel);
 }

@@ -3,20 +3,37 @@
 <mapper namespace="com.jk.dao.RefundysqMapper">
 
 <select id="cha" parameterType="com.jk.util.ParameUtil" resultType="com.jk.model.Refundysq">
-  select * from refund_ysq where 1=1 <!--<include refid="aa"></include>-->
+  select * from refund_ysq where 1=1 <include refid="aa"></include>
 </select>
-  <!--<sql id="aa">
+
+  <update id="xiu">
+    update refund_ysq set tongyi = #{1} where id=#{0}
+  </update>
+
+  <sql id="aa">
     <if test="refundway!=null and refundway!=''">
       and refundway = #{refundway}
     </if>
     <if test="status!=null and status!=''">
       and status = #{status}
     </if>
-    <if test="state!='' and state!=''">
+    <if test="state!=null and state!=''">
       and state = #{state}
     </if>
     <if test="cause!=null and cause!=''">
       and cause = #{cause}
     </if>
-  </sql>-->
+  </sql>
+  <update id="xiuAll" parameterType="String">
+    update refund_ysq set tongyi=0 where id in
+    <foreach collection="array" separator="," item="id" close=")" open="(">
+      #{id}
+    </foreach>
+  </update>
+  <update id="xiuAll2" parameterType="String">
+    update refund_ysq set tongyi=1 where id in
+    <foreach collection="array" separator="," item="id" close=")" open="(">
+      #{id}
+    </foreach>
+  </update>
 </mapper>

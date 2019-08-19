@@ -19,7 +19,7 @@ public class User implements Serializable {
 
     private String email;
 
-    private String status;
+    private Integer status;
 
     private Integer balanceid;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -82,12 +82,12 @@ public class User implements Serializable {
         this.email = email == null ? null : email.trim();
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = status == null ? null : status.trim();
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public Integer getBalanceid() {
