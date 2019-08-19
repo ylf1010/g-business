@@ -1,20 +1,13 @@
 
 <html>
 <head>
-<<<<<<< HEAD
-    <base href="<%=basePath%>">
-=======
 
->>>>>>> 0e9ababdf33b8bc127cb441bdbf3549eff07178e
     <title>标题</title>
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">
     <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
     <meta http-equiv="description" content="This is my page">
-<<<<<<< HEAD
-    <%@ include file="/js/mycssorjs.jsp"%>
-=======
 
 
     <!-- 引入jquery -->
@@ -57,7 +50,6 @@
     <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
 
 
->>>>>>> 0e9ababdf33b8bc127cb441bdbf3549eff07178e
     <style type="text/css">
         body{
             background: url("./js/image/a.jpg") no-repeat;
@@ -100,36 +92,19 @@
                 <div class="form-group">
                     <label class="col-md-3 control-label">用户密码</label>
                     <div class="col-md-9">
-                        <input class="form-control" type="text" placeholder="请输入密码" id="password" name="password"/>
+                        <input class="form-control" type="password" placeholder="请输入密码" id="password" name="password"/>
                     </div>
                 </div>
 
-<<<<<<< HEAD
-                <%--    <div class="form-group">
-=======
-                <!--    <div class="form-group">
->>>>>>> 0e9ababdf33b8bc127cb441bdbf3549eff07178e
+                  <div class="form-group">
                 <label class="col-md-3 control-label">验证码</label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" placeholder="请输入验证码" size="5" id="code"/>
+                    <input type="password" class="form-control" placeholder="请输入验证码" size="5" id="code" />
                     <br/>
-<<<<<<< HEAD
-                    <img  src="<%=request.getContextPath()%>/user/getcode.do" id="img"  onclick="changeCode(this.src)">
+                    <img  src="../ylf/getCode" id="img"  onclick="changeCode(this)">
 
                 </div>
-            </div> --%>
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-4">
-                        <input type="button" class="form-control" class="btn-default" id="login"  value="登录"/>
-                    </div>
-                    <div class="col-md-offset-2 col-md-4">
-                        <input type="button" class="form-control" class="btn-default" onclick="zhu()"  value="注册"/>
-=======
-                    <img  src="../user/getcode.do" id="img"  onclick="">
-
-                </div>
-            </div>-->
+            </div>
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-4">
@@ -137,7 +112,6 @@
                     </div>
                     <div class="col-md-offset-2 col-md-4">
                         <input type="button" class="form-control"  id="zhu"  value="注册"/>
->>>>>>> 0e9ababdf33b8bc127cb441bdbf3549eff07178e
                     </div>
                 </div>
             </form>
@@ -150,38 +124,39 @@
 </body>
 
 <script type="text/javascript">
+    changeCode = function(img){
 
+
+        $(img).attr("src",$(img).attr("src")+"?1");
+
+
+    }
 
     $("#login").click(
 
         function(){
             var username = $("#username").val();
             var password = $("#password").val();
+            var code = $("#code").val();
             var form = $("#userForm").serialize();
+
             $.ajax({
-<<<<<<< HEAD
-                url:"<%=path%>/music/loginUser.do",
-=======
-                url:"../ylf/loginUser",
->>>>>>> 0e9ababdf33b8bc127cb441bdbf3549eff07178e
+                url:"../ylf/loginUser?code="+code,
                 data:form,
                 type:"post",
                 success:function(data){
 
-
-                    if(data=="usererror"){
-                        alert("空");
+                    if(data=="codeError"){
+                        alert("验证码错误");
                     }
-                    if(data=="freeze"){
-                        alert("已冻结,五分钟后再次登录");
+                    if(data=="usererror"){
+                        alert("请输入正确账号");
                     }
                     if(data=="passerror"){
                         alert("密码错误");
                     }
                     if(data=="success"){
-                        location.href="<%=path%>/music/queryL.do";
-                    }else{
-                        alert(data);
+                        location.href="../ztx/tomain";
                     }
 
                 },error:function(){
@@ -196,6 +171,15 @@
         }
     )
 
+    $("#zhu").click(
+
+        function(){
+            alert(22222)
+           location.href="../ylf/toregister";
+
+
+        }
+    )
 
 
 </script>
