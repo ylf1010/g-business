@@ -162,7 +162,8 @@
                     }
                 }},
                 {field:'cz',title:'操作',width:$(this).width() * 0.2,formatter: function(value,row,index){
-                        var a= '<button type="button" class="btn btn-Warning " onclick="editqx('+row.id+')">绑定角色</button>'
+                        var a= '<button type="button" class="btn btn-Warning " onclick="editqx('+row.id+')">绑定角色</button>' +
+                            '<button type="button" class="btn btn-Warning " onclick="upduser('+row.id+')">编辑</button>'
                         if(row.status==1){
                             a+='<button type="button" class="btn btn-Warning " onclick="updatestatus('+row.id+','+2+')">禁用</button>'
                         }else{
@@ -344,6 +345,41 @@
                                 $('#dataGrid3').bootstrapTable("refresh");
                             }
                         })
+                    }
+                },
+                "cancel": {
+                    "label": "<i class='icon-info'></i> 取消",
+                    "className": "btn-sm btn-danger",
+                    "callback": function () {
+                    }
+                }
+            }
+        });
+    }
+
+    //============================================回显====================================
+    function upduser(id){
+        //打开新增弹框
+        bootbox.dialog({
+            title: '用户详细信息',
+            message: createAddContent("../ztx/upduser?id="+id),
+            closeButton: true,//是否显示关闭按钮
+            buttons: {
+                "success": {
+                    "label": "<i class='icon-ok'></i> 修改",
+                    "className": "btn-sm btn-success",
+                    "callback": function () {
+                        $.ajax({
+                            url: '../ztx/updateuser',
+                            type: 'post',
+                            data: $("#addFormId").serialize(),
+                            success: function (flag) {
+                                alert("修改成功");
+                                $('#dataGrid3').bootstrapTable("refresh");
+                            }, error: function () {
+                                alert("修改失败");
+                            }
+                        });
                     }
                 },
                 "cancel": {

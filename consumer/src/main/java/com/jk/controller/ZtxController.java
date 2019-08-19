@@ -172,4 +172,17 @@ public class ZtxController {
         zs.updatestatus(id,status);
     }
 
+    //回显用户
+    @RequestMapping("upduser")
+    public String upduser(Integer id,Model model){
+        User user=zs.upduser(id);
+        model.addAttribute("user",user);
+        return "ztx/upduser";
+    }
+    @RequestMapping("updateuser")
+    @ResponseBody
+    public void updateuser(User user){
+        zs.updateuser(user);
+    }
+
 }

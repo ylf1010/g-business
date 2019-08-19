@@ -6,10 +6,7 @@ import com.jk.dao.ZtxRoleMapper;
 import com.jk.dao.ZtxRoleTreeMapper;
 import com.jk.dao.ZtxTreeMapper;
 import com.jk.dao.ZtxUserRoleMapper;
-import com.jk.model.ZtxRole;
-import com.jk.model.ZtxRoleTree;
-import com.jk.model.ZtxTree;
-import com.jk.model.ZtxUserRole;
+import com.jk.model.*;
 import com.jk.util.ParameUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -185,6 +182,16 @@ public class ZtxServiceImpl implements ZtxService{
     @Override
     public List<ZtxRole> querytype() {
         return rm.queryroleall();
+    }
+
+    @Override
+    public User upduser(Integer id) {
+        return rm.upduser(id);
+    }
+
+    @Override
+    public void updateuser(User user) {
+        rm.updateuser(user);
     }
 
     public List<ZtxTree> queryOrgAll2(int id, int pid) {

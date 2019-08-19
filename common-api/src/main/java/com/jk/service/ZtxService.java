@@ -1,5 +1,6 @@
 package com.jk.service;
 
+import com.jk.model.User;
 import com.jk.model.ZtxRole;
 import com.jk.model.ZtxTree;
 import com.jk.util.ParameUtil;
@@ -42,4 +43,8 @@ public interface ZtxService {
     void updaterolecount(int i, Integer ids);
 
     List<ZtxRole> querytype();
+
+    User upduser(Integer id);
+
+    void updateuser(User user);
 }

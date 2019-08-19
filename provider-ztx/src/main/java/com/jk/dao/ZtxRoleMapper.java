@@ -1,5 +1,6 @@
 package com.jk.dao;
 
+import com.jk.model.User;
 import com.jk.model.ZtxRole;
 import com.jk.util.ParameUtil;
 import org.apache.ibatis.annotations.*;
@@ -34,4 +35,9 @@ public interface ZtxRoleMapper {
     @Update("update y_role set rolecount=rolecount+1 where roleid=#{ids}")
     void updaterolecount2(@Param("ids")Integer ids);
 
+    @Select("select * from user where id=#{id}")
+    User upduser(@Param("id")Integer id);
+
+    @Update("update user set username=#{username},password=#{password},baccount=#{baccount},phone=#{phone},email=#{email} where id=#{id}")
+    void updateuser(User user);
 }
