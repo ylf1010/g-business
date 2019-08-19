@@ -149,7 +149,7 @@
 
                 { field : 'rank', title : '会员级别',width : 300 ,
                     formatter:function(value,row,index){
-                        return "<font  color='#0066CC'>"+value+"</font>";
+                        return "<font  color='#990099'>"+value+"</font>";
 
                     }
                 },
@@ -158,12 +158,72 @@
                     formatter:function(value,row,index){
                         return "<font  color='#990099'>￥</font>"+value+"/年";
                     }
-                }
+                },
+                { field : 'xx', title : '*操作', width : 300,
+                    formatter:function(value,row,index){
+                    var a="<a href='javascript:bianji()' >编辑  |  </a>";
+                     if(row.hystatus == 1){
+                         a+="<a href='javascript:guanbi("+row.hyid+",2)' >关闭</a>";
+                     }else if(row.hystatus == 2){
+                         a+="<a href='javascript:guanbi("+row.hyid+",1)' >开启</a>";
+                     }
+                        return  a;
+                    }
+        }
 
             ]
         });
     })
 
+
+    //编辑
+    bianji =function(){
+        var array = $('#data').bootstrapTable("getSelections");//获取选中的行  数组
+        var  arr=array[0];  //转化对象
+        if(array.length != 1){  //判断数组长度 为一条时回显
+            return ;
+        }else {
+            //打开弹框
+            $("#myModal1").modal("show");
+            //回显
+            $("#hyid").val(arr.hyid);
+            $("#rank").val(arr.rank);
+            $("#tequan").val(arr.tequan);
+            $("#price").val(arr.price);
+
+        }
+
+    }
+
+    //新增 编辑
+    baocun=function(a){
+        $.ajax({
+            url: '../xu/uaddHiuYuan',
+            type: 'post',
+            data: $("#form"+a).serialize(),
+            success: function () {
+                $('#myModal'+a).modal('hide'); //隐藏 (执行完关闭弹框)
+                $("#form"+a)[0].reset();  //清除form表单
+                $('#data').bootstrapTable("refresh");  //refresh刷新当前页
+            }, error: function () {
+                alert("失败！");
+            }
+        });
+    }
+
+    //关闭  开启
+    guanbi=function(hyid,a) {
+            $.ajax({
+                url: "../xu/udeleteHiuYuan",
+                data: {hyid: hyid,a:a},
+                type: "post",
+                success: function () {
+                    $("#data").bootstrapTable("refresh");
+                }, error: function () {
+                    alert("失败！");
+                }
+            })
+    }
 
 </script>
 </html>

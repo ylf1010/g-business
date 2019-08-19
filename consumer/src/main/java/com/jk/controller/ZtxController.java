@@ -80,7 +80,6 @@ public class ZtxController {
     @RequestMapping("queryuser")
     @ResponseBody
     public   Map  queryuser(@RequestBody ParameUtil param ){
-        System.out.println("==============="+param.getIdss());
         List list=zs.queryuser(param);
         Long l=zs.queryusercount(param);
         Map map=new HashMap();
