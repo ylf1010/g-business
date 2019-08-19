@@ -44,6 +44,10 @@ public class LyProductController {
     @Reference
     private LyProductService productService;
 
+    @RequestMapping("toaddpro")
+    public String toaddpro() {
+        return "ly/addproduct";
+    }
     @RequestMapping("toshow")
     public String toshow() {
         return "ly/product";
