@@ -117,6 +117,13 @@ public class LyClassifyController {
         classifyService.updClassify(classify);
         return "ly/classify";
     }
+    @RequestMapping("delclassifyid")
+    @ResponseBody
+    public  String  delclassifyid(int flid){
+        //System.out.println(productid);
+        classifyService.delclassifyid(flid);
+        return  "ly/product";
 
+    }
 
 }

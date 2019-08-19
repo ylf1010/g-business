@@ -64,12 +64,12 @@ public class LyProductController {
         return spr;
     }
     //分类
-    /*@RequestMapping("queryClassify")
+    @RequestMapping("queryClassify")
     @ResponseBody
     public List<Classify> queryClassify(){
         List<Classify> clist=productService.queryClassify();
         return clist;
-    }*/
+    }
   //下架/上架
   @RequestMapping("updateproductzt")
   @ResponseBody
@@ -118,9 +118,8 @@ public class LyProductController {
     }
     //修改
     @RequestMapping("queryProductPage")
-    public String queryProductPage(String id, Model model){
-        System.out.println(id);
-        Product product=productService.queryProductPage(id);
+    public String queryProductPage(String productid, Model model){
+        Product product=productService.queryProductPage(productid);
         model.addAttribute("product",product);
         return "ly/updpro";
     }
