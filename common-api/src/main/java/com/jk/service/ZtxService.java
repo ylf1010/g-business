@@ -7,7 +7,7 @@ import com.jk.util.ParameUtil;
 import java.util.List;
 
 public interface ZtxService {
-    List<ZtxTree> querytree();
+    List<ZtxTree> querytree(Integer id);
 
     List queryrole(ParameUtil param);
 

@@ -15,7 +15,7 @@
       AND    ur.roleid = tr.roleid
       AND    tr.roleid= rp.roleid
       AND    rp.treeid = tp.id
-      AND   tu.id= 1
+      AND   tu.id= #{id}
     GROUP BY tp.name
   </select>
 

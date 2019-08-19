@@ -30,8 +30,8 @@ public class ZtxServiceImpl implements ZtxService{
     private ZtxUserRoleMapper urm;
 
     @Override
-    public List<ZtxTree> querytree() {
-        return tm.querytree();
+    public List<ZtxTree> querytree(Integer id) {
+        return tm.querytree(id);
     }
 
     @Override

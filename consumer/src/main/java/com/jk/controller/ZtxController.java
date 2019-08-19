@@ -1,6 +1,7 @@
 package com.jk.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.jk.model.User;
 import com.jk.model.ZtxRole;
 import com.jk.model.ZtxTree;
 import com.jk.service.ZtxService;
@@ -45,8 +46,8 @@ public class ZtxController {
     @RequestMapping("querytree")
     @ResponseBody
     public List<ZtxTree> querytree(HttpServletRequest request){
-        //UsersModel user = (UsersModel) request.getSession().getAttribute("users");
-        List<ZtxTree> list = zs.querytree();
+        User user = (User) request.getSession().getAttribute("user");
+        List<ZtxTree> list = zs.querytree(user.getId());
         list = TreeUtil.getFatherNode(list);
         return list;
     }
