@@ -20,6 +20,17 @@ public class Jifen_xu implements Serializable {
     private  Integer  jifen;
     private  Integer  jfsum;
 
+    //客户表
+    private String nickname;
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
     public Integer getJfid() {
         return jfid;
     }

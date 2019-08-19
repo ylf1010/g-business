@@ -31,10 +31,20 @@ public class User_xu implements Serializable {
     private  String zuname;
     //会员级别
     private  String rank;
+    private  Integer hystatus;
    //积分
    private  Integer jfsum;
    //标签
     private  String  bqname;
+
+
+    public Integer getHystatus() {
+        return hystatus;
+    }
+
+    public void setHystatus(Integer hystatus) {
+        this.hystatus = hystatus;
+    }
 
     public String getBqname() {
         return bqname;

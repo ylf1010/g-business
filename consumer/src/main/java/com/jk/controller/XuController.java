@@ -2,10 +2,7 @@ package com.jk.controller;
 
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.jk.model.Jifen_xu;
-import com.jk.model.Member_xu;
-import com.jk.model.User_xu;
-import com.jk.model.Zu_xu;
+import com.jk.model.*;
 import com.jk.service.XuService;
 import com.jk.util.BootStrapUtil;
 import com.jk.util.RowsTotal;
@@ -116,7 +113,6 @@ public class XuController {
     @RequestMapping("uhiuyuancha")
     @ResponseBody
     public  RowsTotal  uhiuyuancha(@RequestBody BootStrapUtil bt){
-          System.out.println(bt.getPageNumber());
         RowsTotal  list=xu.uhiuyuancha(bt);
         return  list;
     }
@@ -128,7 +124,20 @@ public class XuController {
         xu.quxiaohiuyuan(ids);
     }
 
+    //赠送会员  下拉查
+    @RequestMapping("uXiaLaHiuYuan")
+    @ResponseBody
+    public List<Member_xu> uXiaLaHiuYuan(){
+        List<Member_xu> list=xu.uXiaLaHiuYuan();
+        return  list;
+    }
 
+    //赠送会员 修改
+    @RequestMapping("uZengHiuYuan")
+    @ResponseBody
+    public void uZengHiuYuan(Um_xu um){
+        xu.uZengHiuYuan(um);
+    }
 
     //跳转会员设置页面
     @RequestMapping("uhiuyuan2")
@@ -145,4 +154,81 @@ public class XuController {
         r.setRows(rows);
         return  r;
     }
+
+    //会员新增 修改
+    @RequestMapping("uaddHiuYuan")
+    @ResponseBody
+    public void uaddHiuYuan(Member_xu mem){
+        xu.uaddHiuYuan(mem);
+    }
+
+    //会员开启  关闭
+    @RequestMapping("udeleteHiuYuan")
+    @ResponseBody
+    public  void udeleteHiuYuan(Integer hyid,Integer a){
+        xu.udeleteHiuYuan(hyid,a);
+    }
+
+
+
+
+             //积分
+    //跳转积分明细页
+    @RequestMapping("ujifen1")
+    public  String  ujifen1(){
+        return  "xu/ujifen1";
+    }
+
+    //积分消耗发放查询
+    @RequestMapping("uJiFenCha")
+    @ResponseBody
+    public RowsTotal uJiFenCha(@RequestBody BootStrapUtil bt){
+        RowsTotal  r= xu.uJiFenCha(bt);
+        return  r;
+    }
+
+
+
+
+            //标签管理
+    //跳转标签页面
+      @RequestMapping("uBiaoQian1")
+      public  String  uBiaoQian1(){
+                return  "xu/uBiaoQian1";
+       }
+
+       //标签管理查询
+    @RequestMapping("uBiaoQianCha")
+    @ResponseBody
+    public RowsTotal uBiaoQianCha(){
+        RowsTotal r= xu.uBiaoQianCha();
+        return  r;
+    }
+
+    //标签 增 改
+    @RequestMapping("uaddBiaoQian")
+    @ResponseBody
+    public void  uaddBiaoQian(BiaoQian_xu bq){
+        xu.uaddBiaoQian(bq);
+    }
+
+    //标签删
+    @RequestMapping("udeleteBiaoQian")
+    @ResponseBody
+    public void  udeleteBiaoQian(Integer bqid){
+        xu.udeleteBiaoQian(bqid);
+    }
+
+
+
+
+
+
+            //兑换码
+    //跳转兑换码页面
+     @RequestMapping("uDuiHuanMa1")
+     public  String  uDuiHuanMa1(){
+                return  "xu/uDuiHuanMa1";
+            }
+
 }

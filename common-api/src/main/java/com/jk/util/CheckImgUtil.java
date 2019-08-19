@@ -1,5 +1,7 @@
 package com.jk.util;
 
+
+
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,9 +10,10 @@ import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.util.Random;
 
+
 public class CheckImgUtil implements Serializable {
 
-	public static void buildCheckImg(HttpServletRequest request, HttpServletResponse response) {
+	public static void buildCheckImg(HttpServletRequsert request,HttpServletResponse response) {
 		try {
 			checkImg(request,response);
 		} catch (Exception e) {
@@ -19,7 +22,7 @@ public class CheckImgUtil implements Serializable {
 	}
 	
 	//获取验证码图片并生成到前台
-    public static String checkImg(HttpServletRequest request, HttpServletResponse response) throws Exception{
+    public static String checkImg(HttpServletRequest request,HttpServletResponse response) throws Exception{  
         int width = 120;
         int height = 30;
   

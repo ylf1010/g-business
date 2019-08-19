@@ -1,9 +1,6 @@
 package com.jk.service;
 
-import com.jk.model.Jifen_xu;
-import com.jk.model.Member_xu;
-import com.jk.model.User_xu;
-import com.jk.model.Zu_xu;
+import com.jk.model.*;
 import com.jk.util.BootStrapUtil;
 import com.jk.util.RowsTotal;
 
@@ -37,4 +34,20 @@ public interface XuService {
     void quxiaohiuyuan(String[] ids);
 
     List<Member_xu> uHiuYuanShezhi();
+
+    void uaddHiuYuan(Member_xu mem);
+
+    void udeleteHiuYuan(Integer hyid,Integer a);
+
+    RowsTotal uJiFenCha(BootStrapUtil bt);
+
+    List<Member_xu> uXiaLaHiuYuan();
+
+    void uZengHiuYuan(Um_xu um);
+
+    RowsTotal uBiaoQianCha();
+
+    void uaddBiaoQian(BiaoQian_xu bq);
+
+    void udeleteBiaoQian(Integer bqid);
 }
