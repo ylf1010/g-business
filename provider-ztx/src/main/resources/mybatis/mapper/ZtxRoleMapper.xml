@@ -22,8 +22,11 @@
 
   <select id="queryuser" resultType="HashMap">
     select a.*,c.rolename rolename from user a,y_user_role b,y_role c where a.id=b.userid and b.roleid=c.roleid
-      <if test="username!=null">
-        and a.username like '%${username}%'
+      <if test="p.username!=null">
+        and a.username like '%${p.username}%'
+      </if>
+      <if test="p.idss!=null and p.idss!=''">
+        and b.roleid in (${p.idss})
       </if>
     limit #{papa},#{pageSize}
   </select>

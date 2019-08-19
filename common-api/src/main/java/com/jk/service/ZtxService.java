@@ -1,5 +1,6 @@
 package com.jk.service;
 
+import com.jk.model.User;
 import com.jk.model.ZtxRole;
 import com.jk.model.ZtxTree;
 import com.jk.util.ParameUtil;
@@ -7,7 +8,7 @@ import com.jk.util.ParameUtil;
 import java.util.List;
 
 public interface ZtxService {
-    List<ZtxTree> querytree();
+    List<ZtxTree> querytree(Integer id);
 
     List queryrole(ParameUtil param);
 
@@ -36,4 +37,14 @@ public interface ZtxService {
     void updatero(Integer ids, Integer id);
 
     List<ZtxTree> querytreebyrid(Integer id, int pid);
+
+    List<String> queryrolebyid(Integer id);
+
+    void updaterolecount(int i, Integer ids);
+
+    List<ZtxRole> querytype();
+
+    User upduser(Integer id);
+
+    void updateuser(User user);
 }

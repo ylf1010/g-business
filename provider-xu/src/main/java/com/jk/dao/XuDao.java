@@ -44,4 +44,29 @@ public interface XuDao {
 
 
     List<Member_xu> uHiuYuanShezhi();
+
+    void uupdateHiuYuan(Member_xu mem);
+
+    void uaddHiuYuan(Member_xu mem);
+
+    void udeleteHiuYuan(Integer hyid,Integer a);
+
+    Integer uJiFencount(Map map);
+
+    List<Jifen_xu> uJiFenCha(Map map);
+
+    List<Member_xu> uXiaLaHiuYuan();
+
+    void uZengHiuYuan(Um_xu um);
+
+    List<BiaoQian_xu> uBiaoQianCha();
+
+    Integer udeleteBiaoQian(Integer bqid);
+
+    void uupdateBiaoQian(BiaoQian_xu bq);
+
+    void uaddBiaoQian(BiaoQian_xu bq);
+
+    void uupdateKeHuBiaoQian(Integer bqid);
+
 }

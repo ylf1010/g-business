@@ -10,7 +10,6 @@
     <modelVersion>4.0.0</modelVersion>
       <packaging>jar</packaging>
 
-
     <artifactId>common-api</artifactId>
 
     <dependencies>
@@ -32,13 +31,11 @@
             <version>2.9.0</version>
             <scope>compile</scope>
         </dependency>
-
-        <!--引入javax.servlet对应jar包 -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
             <version>2.5</version>
-            <scope>provided</scope>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>

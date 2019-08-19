@@ -43,6 +43,16 @@ public class ParameUtil implements Serializable {
         this.flname = flname;
     }
 
+    public String getIdss() {
+        return idss;
+    }
+
+    public void setIdss(String idss) {
+        this.idss = idss;
+    }
+
+    private String idss;
+
     public String getUsername() {
         return username;
     }

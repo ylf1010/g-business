@@ -1,18 +1,18 @@
 package com.jk.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.alibaba.fastjson.JSONObject;
 import com.jk.dao.ZtxRoleMapper;
 import com.jk.dao.ZtxRoleTreeMapper;
 import com.jk.dao.ZtxTreeMapper;
 import com.jk.dao.ZtxUserRoleMapper;
-import com.jk.model.ZtxRole;
-import com.jk.model.ZtxRoleTree;
-import com.jk.model.ZtxTree;
-import com.jk.model.ZtxUserRole;
+import com.jk.model.*;
 import com.jk.util.ParameUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ZtxServiceImpl implements ZtxService{
@@ -27,8 +27,8 @@ public class ZtxServiceImpl implements ZtxService{
     private ZtxUserRoleMapper urm;
 
     @Override
-    public List<ZtxTree> querytree() {
-        return tm.querytree();
+    public List<ZtxTree> querytree(Integer id) {
+        return tm.querytree(id);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class ZtxServiceImpl implements ZtxService{
             for (int j = 0; j < listTwo.size(); j++) {
                 // 用  原来 选中的 菜单id  和所有的  菜单id  对比 ，对比成功 就选中
                 if(list.get(i).equals(listTwo.get(j).getId().toString())){
-                    listTwo.get(j).setChecked("true");
+                    listTwo.get(j).setChecked(true);
                 }
             }
         }
@@ -87,8 +87,7 @@ public class ZtxServiceImpl implements ZtxService{
     @Override
     public List queryuser(ParameUtil param) {
         int papa=(param.getPageNumber()-1)*param.getPageSize();
-        System.out.println("================"+param.getUsername());
-        return rm.queryuser(param.getUsername(),papa,param.getPageSize());
+        return rm.queryuser(param,papa,param.getPageSize());
     }
 
     @Override
@@ -145,13 +144,16 @@ public class ZtxServiceImpl implements ZtxService{
 
     @Override
     public List<ZtxTree> querytreebyrid(Integer id, int pid) {
+        JSONObject json =new JSONObject();
         List <ZtxTree> list =queryOrgAll3(pid);
         List <ZtxTree> list2= queryOrgAll2(id,pid);
+        Map map=new HashMap();
         for (int i = 0; i < list.size(); i++) {
             for (int j = 0; j < list2.size(); j++) {
                 if(list.get(i).getId()==list2.get(j).getId()){
                     list.get(i).getId();
-                    list.get(i).setChecked("true");
+                    json.put("checked", true);
+                    list.get(i).setState(json);
                 }
             }
             if(list.size()>0){
@@ -162,6 +164,34 @@ public class ZtxServiceImpl implements ZtxService{
             }
         }
         return list;
+    }
+
+    @Override
+    public List<String> queryrolebyid(Integer id) {
+        List<String> list =  urm.queryrolebyid(id);
+        return list;
+    }
+
+    @Override
+    public void updaterolecount(int i, Integer ids) {
+        rm.updaterolecount1(i);
+        rm.updaterolecount2(ids);
+
+    }
+
+    @Override
+    public List<ZtxRole> querytype() {
+        return rm.queryroleall();
+    }
+
+    @Override
+    public User upduser(Integer id) {
+        return rm.upduser(id);
+    }
+
+    @Override
+    public void updateuser(User user) {
+        rm.updateuser(user);
     }
 
     public List<ZtxTree> queryOrgAll2(int id, int pid) {
