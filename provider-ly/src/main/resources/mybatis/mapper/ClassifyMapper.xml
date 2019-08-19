@@ -28,9 +28,9 @@
   <delete id="delClassify">
     delete from  ly_classify where flid in (${flids})
   </delete>
-  <!--<select id="xgClassifypage" resultMap="BaseResultMap">
+  <select id="xgClassifypage" resultMap="BaseResultMap">
      select  * from  ly_classify  where   flid=#{flid}
-  </select>-->
+  </select>
 
 
 

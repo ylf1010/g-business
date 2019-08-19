@@ -79,4 +79,9 @@ public class LyClassifyServiceImpl implements LyClassifyService{
     public void updClassify(Classify classify) {
         classifyMapper.updateByPrimaryKey(classify);
     }
+
+    @Override
+    public void delclassifyid(int flid) {
+        classifyMapper.delclassifyid(flid);
+    }
 }

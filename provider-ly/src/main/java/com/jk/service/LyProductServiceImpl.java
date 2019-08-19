@@ -15,14 +15,13 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.jk.dao.ClassifyMapper;
 import com.jk.dao.ProductMapper;
+import com.jk.model.Classify;
 import com.jk.model.Product;
 import com.jk.util.PageUtil;
 import com.jk.util.ParameUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 〈一句话功能简述〉<br> 
@@ -41,26 +40,26 @@ public class LyProductServiceImpl implements LyProductService{
     @Override
     public PageUtil querylyProduct(ParameUtil parame) {
         PageHelper.startPage(parame.getPageNumber(), parame.getPageSize());
-        Map<String,Object> map = new HashMap<>();
+       /* Map<String,Object> map = new HashMap<>();
         if(parame != null && parame.getProductname() != null && parame.getProductname().length()>0){
-
             map.put("productname", parame.getProductname());
         }
         if(parame !=null && parame.getFlid() !=null && parame.getFlid()!=-1){
             map.put("flid", parame.getFlid());
-        }
+        }*/
+
         List<Product> list=productMapper.querylyProduct(parame);
         PageInfo<Product> pageInfo=new PageInfo<Product>(list);
         PageUtil pageUtil= new PageUtil((int) pageInfo.getTotal(),parame.getPageNumber(),parame.getPageSize());
         pageUtil.setList(list);
-    return pageUtil;
+        return pageUtil;
     }
     //分类
-   /* @Override
+    @Override
     public List<Classify> queryClassify() {
 
         return classifyMapper.queryClassify();
-    }*/
+    }
     //上下架
     @Override
     public void updateproductzt(int productid, int zt) {
@@ -73,23 +72,18 @@ public class LyProductServiceImpl implements LyProductService{
         product.setProductpid(2);
         productMapper.addProduct(product);
     }
-
     @Override
     public void delProduct(String dids) {
         productMapper.delProduct(dids);
-
     }
-
     @Override
-    public Product queryProductPage(String id) {
-
-        return productMapper.selectByPrimaryKey(id);
+    public Product queryProductPage(String productid) {
+        System.out.println(productid);
+        return productMapper.queryProductPage(productid);
     }
-
     @Override
-    public void updateProduct(Product product) {
+    public void updateProduct(Product product){
         productMapper.updateByPrimaryKey(product);
     }
-
 
 }

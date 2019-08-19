@@ -13,7 +13,7 @@ public interface ProductMapper {
 
     int insertSelective(Product record);
 
-    //Product selectByPrimaryKey(Integer productid);
+    Product selectByPrimaryKey(String productid);
 
     int updateByPrimaryKeySelective(Product record);
 
@@ -27,5 +27,6 @@ public interface ProductMapper {
 
     void delProduct(@Param("dids") String dids);
 
-    Product selectByPrimaryKey(@Param("id") String id);
+    Product queryProductPage(@Param("productid") String productid);
+
 }
