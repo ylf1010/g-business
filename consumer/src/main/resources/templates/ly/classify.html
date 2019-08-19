@@ -63,7 +63,7 @@
 </form>
 <button type="button" class="btn btn-Warning btn-lg" onclick="addfl()"><font color="blue">+新建分类</font></button>
 <!--<button type="button"  class="btn btn-info btn-lg" onclick="deleteclassifyById()">批量删除</button>-->
-<button type="button" class="btn btn-Warning btn-lg" onclick="upddogId()">修改</button>
+<button type="button" class="btn btn-Warning btn-lg" onclick="updclassifyId()">编辑/修改</button>
 <!--  表格 -->
 <table id="fl-table"></table>
 <button type="button"  class="btn btn-info btn-lg" onclick="deleteclassifyById()">批量删除</button>
@@ -147,7 +147,8 @@
 
                 },*/
                 {field:'act',title:'操作',width:300,
-                    formatter: function(value,row,index){//单元格格式化器（字段值，行对象，行索引）
+
+                   formatter: function(value,row,index){//单元格格式化器（字段值，行对象，行索引）
                         if(row.productsxj==1){
                             return "<input type='button' value='下架' bgcolor='red' onclick='edituser("+row.productid+","+row.productsxj+")'></input>";
                         }else if(row.productsxj==2){
@@ -250,6 +251,54 @@
 //		    		 		如果没有选中的复选框    提示警告
             alert('警告！请至少选择一项进行删除');
         }
+
+    }
+    function updclassifyId(){
+
+
+        var arr=$("#fl-table").bootstrapTable('getSelections');
+        if(arr.length==0 || arr.length > 1){
+            alert("警告！只能修改单条数据")
+        }else{
+
+            bootbox.dialog({
+                title: '修改音乐',
+                message: createAddContent("../lyclassify/xgClassifypage?flid="+arr[0].flid),
+                closeButton: true,//是否显示关闭按钮
+                buttons: {
+                    "success": {
+                        "label": "<i class='icon-ok'></i> 保存",
+                        "className": "btn-sm btn-success",
+                        "callback": function () {
+
+                            $.ajax({
+                                url: '../lyclassify/updClassify',
+                                type: 'post',
+                                data: $("#updflformId").serialize(),
+                                success: function () {
+                                    alert("修改成功");
+                                    $('#fl-table').bootstrapTable("refresh");
+                                    //刷新表格
+                                }, error: function () {
+                                    alert("修改失败");
+                                }
+                            });
+                        }
+
+                    },
+                    "cancel": {
+                        "label": "<i class='icon-info'></i> 取消",
+                        "className": "btn-sm btn-danger",
+                        "callback": function () {
+
+                        }
+                    }
+                }
+
+            });
+
+        }
+
 
     }
 
