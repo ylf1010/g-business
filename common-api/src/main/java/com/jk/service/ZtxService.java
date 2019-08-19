@@ -40,4 +40,6 @@ public interface ZtxService {
     List<String> queryrolebyid(Integer id);
 
     void updaterolecount(int i, Integer ids);
+
+    List<ZtxRole> querytype();
 }

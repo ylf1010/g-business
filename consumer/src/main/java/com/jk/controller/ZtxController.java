@@ -48,6 +48,13 @@ public class ZtxController {
         request.removeAttribute("user");
         return "loginUser";
     }
+    //查询角色
+    @RequestMapping("querytype")
+    @ResponseBody
+    public List<ZtxRole> querytype(){
+        List<ZtxRole> list = zs.querytype();
+        return list;
+    }
     //五表查权限
     @RequestMapping("querytree")
     @ResponseBody
@@ -73,6 +80,7 @@ public class ZtxController {
     @RequestMapping("queryuser")
     @ResponseBody
     public   Map  queryuser(@RequestBody ParameUtil param ){
+        System.out.println("==============="+param.getIdss());
         List list=zs.queryuser(param);
         Long l=zs.queryusercount(param);
         Map map=new HashMap();

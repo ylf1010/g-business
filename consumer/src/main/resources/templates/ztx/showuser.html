@@ -42,6 +42,10 @@
 <body >
 
 <form id="pro_from" class="form-inline">
+    <div id="leagid">
+        角色：
+
+    </div>
     用户名：<input type="text" class="form-control" name="username" >
     <button type="button" class="btn btn-success" onclick="querytj()">查询</button>
 </form>
@@ -83,7 +87,28 @@
 
     $(function(){
         queryData();
+        showleag();
     });
+
+    function showleag(){
+        $.ajax({
+            url:"../ztx/querytype",
+            type:"post",
+            success:function(data){
+                var thtml='';
+                for (var i = 0; i < data.length; i++) {
+                    thtml+='<input type="checkbox" value="'+data[i].roleid+'" name="role">'+data[i].rolename+''
+                }
+                $("#leagid").html(thtml);
+            },
+            error:function(){
+                alert("后台错误，请使用debug调试");
+            }
+        })
+    }
+
+
+
 
     function queryData(){
         //创建bootstrapTable
@@ -168,9 +193,17 @@
 
     //==================================================条件查询==========================================
     function querytj(){
+        var arr=document.getElementsByName("role");
+        var idss="";
+        for(var i=0;i<arr.length;i++){
+            if(arr[i].checked){
+                idss+=","+arr[i].value;
+            }
+        }idss=idss.substr(1);
         $("#dataGrid3").bootstrapTable("refresh", {
             "query": {
                 "username": $('[name="username"]').val(),
+                "idss": idss,
             }
         });
     }

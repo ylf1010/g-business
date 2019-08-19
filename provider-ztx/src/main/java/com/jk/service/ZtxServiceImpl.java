@@ -90,7 +90,7 @@ public class ZtxServiceImpl implements ZtxService{
     @Override
     public List queryuser(ParameUtil param) {
         int papa=(param.getPageNumber()-1)*param.getPageSize();
-        return rm.queryuser(param.getUsername(),papa,param.getPageSize());
+        return rm.queryuser(param,papa,param.getPageSize());
     }
 
     @Override
@@ -180,6 +180,11 @@ public class ZtxServiceImpl implements ZtxService{
         rm.updaterolecount1(i);
         rm.updaterolecount2(ids);
 
+    }
+
+    @Override
+    public List<ZtxRole> querytype() {
+        return rm.queryroleall();
     }
 
     public List<ZtxTree> queryOrgAll2(int id, int pid) {

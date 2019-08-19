@@ -19,7 +19,7 @@ public interface ZtxRoleMapper {
     @Delete("delete from y_role where roleid in (${ids})")
     void deleterole(@Param("ids") String ids);
 
-    List queryuser(@Param("username") String username, @Param("papa") int papa, @Param("pageSize") Integer pageSize);
+    List queryuser(@Param("p") ParameUtil param, @Param("papa") int papa, @Param("pageSize") Integer pageSize);
 
     Long queryusercount(@Param("p") ParameUtil param);
 
@@ -33,4 +33,5 @@ public interface ZtxRoleMapper {
     void updaterolecount1(@Param("i")int i);
     @Update("update y_role set rolecount=rolecount+1 where roleid=#{ids}")
     void updaterolecount2(@Param("ids")Integer ids);
+
 }
