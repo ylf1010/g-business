@@ -31,11 +31,15 @@
         <input type="text" class="form-control" id="name" name="productzxl" placeholder="商品(总销量)"/>
     </div>
     <div class="form-group">
-        <label for="email" class="col-sm-2 control-label">商品分类</label>
-        <div class="col-sm-6">
-       <select id="selectaid" name="flname"></select>
-        </div>
-   </div><br>
+        <label>分类:</label>
+       <!-- <select class="form-control" id="selectaid" name="flname"></select>-->
+        <select class="form-control" name="productpid" >
+            <option value="-1">请选择</option>
+            <option value="1" >素材原件</option>
+            <option value="2" >原型设计</option>
+
+        </select>
+    </div><br>
     <div class="form-group">
         <label for="name">时间</label>
         <input type="date" class="form-control"  name="productdate" placeholder="商品(时间)" style="width: 60%" />
@@ -83,7 +87,6 @@
 <script>
 
     $(function(){
-        xiala();
             //文件域的id
             uploadObj = $("#imgFileBTN").uploadify({
                 //前台请求后台的url 不可忽略的参数
@@ -128,21 +131,23 @@
                     // append
                 }
             });
+        xiala();
     })
 
-function  xiala(){
-    $.ajax({
-        type:"post",
-        url:"../lyproduct/queryClassify",
-        success:function(data){
-            var html='<option value="-1">--请选择--</option>'
-            for (var i = 0; i < data.length; i++) {
-                html+='<option value='+data[i].flid+'>'+data[i].flname+'</option>';
-            }
-            $("#selectaid").html(html)
+        function xiala() {
+            $.ajax({
+                type: "post",
+                url: "../lyproduct/queryClassify",
+                success: function (data) {
+                    var html = '<option value="-1">--请选择--</option>'
+                    for (var i = 0; i < data.length; i++) {
+                        html += '<option value=' + data[i].flid + '>' + data[i].flname + '</option>';
+                    }
+                    $("#selectaid").html(html)
+                }
+            })
         }
-    })
-}
+
     /*var editor;
     KindEditor.ready(function(K) {
         editor = K.create('#editor_id', {

@@ -53,17 +53,16 @@
         <input type="text" class="form-control" name = "productname" id="productname" placeholder="商品(名称)">
     </div>
     <div class="form-group">
-        <label for="classify" class="col-sm-2 control-label">分类:</label>
-        <div class="col-sm-3">
-            <select id="selectaid" name="flname"></select>
-        </div>
+        <label>分类:</label>
+            <select class="form-control" id="selectaid" name="flname"></select>
+
     </div>
     <br>
     <button type="button" class="btn btn-success" onclick="queryData()">搜索</button>
 </form>
 <button type="button" class="btn btn-Warning btn-lg" onclick="addSP()">新增</button>
 <!--<button type="button"  class="btn btn-info btn-lg" onclick="deleteproductById()">批量删除</button>-->
-<!--<button type="button" class="btn btn-Warning btn-lg" onclick="upddogId()">修改</button>-->
+<button type="button" class="btn btn-Warning btn-lg" onclick="updproductId()">修改</button>
 <!--  表格 -->
 <table id="product-table"></table>
 <button type="button"  class="btn btn-info btn-lg" onclick="deleteproductById()">批量删除</button>
@@ -164,6 +163,7 @@
                 {field: 'productkucun', title: '商品(库存)', width: 300},
                 {field: 'productzxl', title: '商品(总销量)', width: 300},
                 {field: 'productdate', title: '商品(发布时间)', width: 300},
+                    {field: 'productdescribe', title: '商品(描述)', width: 300},
                 {field: 'productsxj', title: '商品(上/下架)', width: 300,
                     formatter: function (value, row, index) {//单元格格式化器（字段值，行对象，行索引）
                         var sxj = "";
@@ -312,6 +312,54 @@
 //		    		 		如果没有选中的复选框    提示警告
             alert('警告！请至少选择一项进行删除');
         }
+
+    }
+    function updproductId(){
+
+
+        var arr=$("#product-table").bootstrapTable('getSelections');
+        if(arr.length==0 || arr.length > 1){
+            alert("警告！只能修改单条数据")
+        }else{
+
+            bootbox.dialog({
+                title: '修改商品',
+                message: createAddContent("../lyproduct/queryProductPage?productid="+arr[0].productid),
+                closeButton:true,//是否显示关闭按钮
+                buttons: {
+                    "success": {
+                        "label": "<i class='icon-ok'></i> 保存",
+                        "className": "btn-sm btn-success",
+                        "callback": function () {
+
+                            $.ajax({
+                                url: '../lyproduct/updateProduct',
+                                type: 'post',
+                                data: $("#updspformId").serialize(),
+                                success: function () {
+                                    alert("修改成功");
+                                    $('#product-table').bootstrapTable("refresh");
+                                    //刷新表格
+                                }, error: function () {
+                                    alert("修改失败");
+                                }
+                            });
+                        }
+
+                    },
+                    "cancel": {
+                        "label": "<i class='icon-info'></i> 取消",
+                        "className": "btn-sm btn-danger",
+                        "callback": function () {
+
+                        }
+                    }
+                }
+
+            });
+
+        }
+
 
     }
 

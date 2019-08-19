@@ -149,13 +149,8 @@
                 {field:'act',title:'操作',width:300,
 
                    formatter: function(value,row,index){//单元格格式化器（字段值，行对象，行索引）
-                        if(row.productsxj==1){
-                            return "<input type='button' value='下架' bgcolor='red' onclick='edituser("+row.productid+","+row.productsxj+")'></input>";
-                        }else if(row.productsxj==2){
-                            return "<input type='button' value='上架' bgcolor='blue' onclick='edituser("+row.productid+","+row.productsxj+")'></input>";
-                        }else{
-                            return "不明";
-                        }
+
+                        return '<button type="button"  class="btn btn-info btn-lg" onclick="delclassifyById('+row.flid+')">删除</button>';
                     }
 
                 },
@@ -298,8 +293,20 @@
             });
 
         }
-
-
+    }
+    function delclassifyById(flid){
+         //alert(flid);
+        $.ajax({
+            type:"post",
+            url:"../lyclassify/delclassifyid?flid="+flid,
+            success:function(){
+                   alert("删除成功！！")
+                $('#fl-table').bootstrapTable("refresh");
+            },
+            error:function (){
+                alert("后台有误，请使用debug调试！！！");
+            }
+        })
     }
 
 </script>
