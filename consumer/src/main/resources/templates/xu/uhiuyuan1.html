@@ -50,8 +50,50 @@
 <!-- table 数据展示  -->
 <table id="data" ></table>
 
-<button class="btn btn-info btn-sm" onclick="zenghiuyuan()">批量赠送</button>
+<button class="btn btn-info btn-sm" onclick="pizenghiuyuan()">批量赠送</button>
 <button class="btn btn-danger btn-sm" onclick="piquxiao()">批量取消</button>
+
+
+
+<!--单个赠送会员-->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- 头部 -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">&times;</button>  <!-- X号关闭 -->
+                <h4 class="modal-title" id="myModalLabel">赠送会员</h4>
+            </div>
+
+            <!-- 中部   form内容设置  -->
+            <form id="form1">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">会员名称</label>
+                            <select id="sehiuyuan" name="mid"> </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">到期时间</label>
+                        <input type="date" id="bddate" name="bddate" />
+                    </div>
+
+                    <input type="hidden" id="keid" name="uid">
+                </div>
+
+                <!-- 尾部 （按扭）-->
+                <div class="modal-footer">
+                    <button type="button" onclick="zengsong()" class="btn btn-ok"> 赠送 </button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal">取消</button>
+                </div>
+            </form>
+
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div>
+
 
 
 </body>
@@ -120,10 +162,11 @@
                     }
                 },
                 { field : 'addate', title : '购买时间', width : 300 },
-                { field : 'bddate', title : '过期时间', width : 300 },
+                { field : 'bddate', title : '到期时间', width : 300 },
                 { field : 'x', title : '操作', width : 300,
                     formatter:function(value,row,index){
-                        var a="<a href='javascript:zenghiuyuan("+row.keid+")' >赠送会员 </a>   |  ";
+                        var bddate=JSON.stringify(row.bddate);
+                        var a="<a href='javascript:zenghiuyuan("+row.keid+","+bddate+","+row.mid+")' >赠送会员 </a>   |  ";
                           a+="  <a href='javascript:quxiao("+row.keid+")' >取消会员</a>";
                         return  a;
                     }
@@ -192,8 +235,49 @@
     }
 
 
-    //批量  赠送会员
+    //单个赠送会员 下拉查
+    zenghiuyuan =function(keid,bddate,mid){
 
+        $.ajax({
+            url:"../xu/uXiaLaHiuYuan",
+            success:function(data){
+                var  op=" ";
+                for (var i = 0; i < data.length; i++) {
+                    op +="<option value='"+data[i].hyid+"'>"+data[i].rank+"";
+                }
+                $("#sehiuyuan").html(op);
+
+                //回显
+                $("#sehiuyuan").val(mid);
+                $("#keid").val(keid);  //隐藏id
+                $("#bddate").val(bddate);
+
+                $('#myModal1').modal('show'); //代开弹框
+            }
+
+        })
+    }
+
+    //单个 赠送会员 改
+    zengsong=function(){
+        $.ajax({
+            url: '../xu/uZengHiuYuan',
+            type: 'post',
+            data: $("#form1").serialize(),
+            success: function () {
+                $('#myModal1').modal('hide'); //隐藏 (执行完关闭弹框)
+                $("#form1")[0].reset();  //清除form表单
+                $('#data').bootstrapTable("refresh");  //refresh刷新当前页
+            }, error: function () {
+                alert("失败！");
+            }
+        });
+    }
+
+    //批量赠送
+    pizenghiuyuan=function(){
+        alert("批量取消还不够用？单个赠送还不够用？还想批量赠送，老子就不开发...呸 ");
+    }
 
 </script>
 </html>

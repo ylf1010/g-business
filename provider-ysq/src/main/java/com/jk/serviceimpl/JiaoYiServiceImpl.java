@@ -6,8 +6,8 @@ import com.github.pagehelper.PageInfo;
 import com.jk.dao.YsqJiaoYiMapper;
 import com.jk.model.YsqJiaoYi;
 import com.jk.service.JiaoYiService;
-import com.jk.util.ztx.PageUtil;
-import com.jk.util.ztx.ParameUtil;
+import com.jk.util.PageUtil;
+import com.jk.util.ParameUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;

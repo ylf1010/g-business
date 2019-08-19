@@ -11,7 +11,7 @@ public class BiaoQian_xu implements Serializable {
     private  Integer bqid;
     private  String bqname;
     private  Integer bqsum;
-    private  String condition;
+    private  String tianjian;
     @DateTimeFormat(pattern="yyyy-MM-dd")   // 处理从 前端到后端的时间
     @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")   // 处理从	后端到前端的时间
     private Date bqdate;
@@ -28,8 +28,12 @@ public class BiaoQian_xu implements Serializable {
         return bqsum;
     }
 
-    public String getCondition() {
-        return condition;
+    public String getTianjian() {
+        return tianjian;
+    }
+
+    public void setTianjian(String tianjian) {
+        this.tianjian = tianjian;
     }
 
     public Date getBqdate() {
@@ -48,9 +52,6 @@ public class BiaoQian_xu implements Serializable {
         this.bqsum = bqsum;
     }
 
-    public void setCondition(String condition) {
-        this.condition = condition;
-    }
 
     public void setBqdate(Date bqdate) {
         this.bqdate = bqdate;

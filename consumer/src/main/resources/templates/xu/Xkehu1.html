@@ -65,17 +65,19 @@
 </form>
 
 <br>
+<div class="form-group">
     <button class="btn btn-info" data-toggle="modal" data-target="#myModal1">+新建分组</button>
-
-    <select id="select1" class="form-control" onblur="sousuo()" >
-         <option value="1">全部客户</option>
+<select id="select1" class="form-control" onblur="sousuo()" style="width: 180px">
+         <option value="1">查全部客户</option>
     </select>
+</div>
+
 <br>
     <button type="button" class="btn btn-warning" onclick="yidongzu(1)">移出分组</button>
-    <select id="select2" class="form-control" onblur="yidongzu(this.value)"> </select>
+    <select id="select2" class="form-control" onblur="yidongzu(this.value)" style="width: 180px"> </select>
 
 
-
+<br>
 <!-- 按扭  -->
 <div >
     <button class="btn btn-danger btn-sm" onclick="delete1()">批量删除</button>
@@ -168,7 +170,6 @@
                     pageSize : params.pageSize,
                     sortName : params.sortName,
                     sortOrder : params.sortOrder,
-                    name : $("#name").val()
                 };
                 return param;
             },
@@ -183,7 +184,15 @@
                     }
                 },
                 { field : 'phone', title : '手机号',width : 300 },
-                { field : 'rank', title : '会员级别', width : 300 },
+                { field : 'rank', title : '会员级别', width : 300,
+                    formatter:function(value,row,index){
+                      var  a=value;
+                      if(row.hystatus == 2){
+                          a+="<font  color='#990000'>[已停用]</font>";
+                      }
+                        return a;
+                    }
+                },
                 { field : 'jfsum', title : '积分', width : 300 },
                 { field : 'bqname', title : '标签', width : 300 ,
                     formatter:function(value,row,index){
@@ -207,6 +216,7 @@
                 "name" : $("#name").val(),
                 "hiuyuan" : $("#hiuyuan").val(),
                 "stajifen" : $("#stajifen").val(),
+                "endjifen" : $("#endjifen").val(),
                     "zuselect1" : $("#select1").val(),
             }
         });
