@@ -42,12 +42,18 @@ public class ZtxController {
         return "ztx/showuser";
     }
 
+    //注销
+    @RequestMapping("zx")
+    public String zx(HttpServletRequest request){
+        request.removeAttribute("user");
+        return "loginUser";
+    }
     //五表查权限
     @RequestMapping("querytree")
     @ResponseBody
     public List<ZtxTree> querytree(HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
-        List<ZtxTree> list = zs.querytree(user.getId());
+        List<ZtxTree> list = zs.querytree(1);
         list = TreeUtil.getFatherNode(list);
         return list;
     }
