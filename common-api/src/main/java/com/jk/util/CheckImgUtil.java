@@ -1,7 +1,5 @@
 package com.jk.util;
 
-
-
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -1,8 +1,6 @@
 package com.jk.controller;
 
-
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.jk.model.AreaBeanLxx;
 import com.jk.model.RenZhengBean;
 
 
@@ -11,10 +9,6 @@ import com.jk.service.LxxService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 
 @Controller
@@ -49,39 +43,28 @@ public class LxxController {
     }
 
     //新增//修改
-    @RequestMapping("addShop")
+    /*@RequestMapping("addShop")
     @ResponseBody
     public  String addShop(RenZhengBean renZhengBean){
-        int i = lxxService.addShop(renZhengBean);
-        return null;
 
-    }
-
-
+        return lxxService.addShop(renZhengBean);
+    }*/
 
 
     //新增企业认证
-    @RequestMapping("addEnterprise")
+    /*@RequestMapping("addEnterprise")
     @ResponseBody
     public  String addEnterprise(RenZhengBean renZhengBean){
-        int i = lxxService.addEnterprise(renZhengBean);
-        return null;
 
-    }
+        return  lxxService.addEnterprise(renZhengBean);
+    }*/
 
     //新增个人认证
-    @RequestMapping("addIndividual")
+    /*@RequestMapping("addIndividual")
     @ResponseBody
     public  String addIndividual(RenZhengBean renZhengBean){
-       int i = lxxService.addIndividual(renZhengBean);
-        return null;
-    }
-  //三级联动
-    @RequestMapping("findArea")
-    @ResponseBody
-    public List<AreaBeanLxx> findArea(Integer id){
-        List<AreaBeanLxx> findArea = lxxService.findArea(id);
-        return findArea;
-    }
+
+        return lxxService.addIndividual(renZhengBean);
+    }*/
 
 }

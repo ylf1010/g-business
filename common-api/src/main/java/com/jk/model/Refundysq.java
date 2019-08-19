@@ -1,8 +1,12 @@
 package com.jk.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class Refundysq {
+public class Refundysq implements Serializable {
     private Integer id;
 
     private Integer jiaoyiid;
@@ -18,10 +22,22 @@ public class Refundysq {
     private String refundway;
 
     private String cause;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd ")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date applytime;
 
     private Integer status;
+
+
+    private Integer tongyi;
+
+    public Integer getTongyi() {
+        return tongyi;
+    }
+
+    public void setTongyi(Integer tongyi) {
+        this.tongyi = tongyi;
+    }
 
     public String getJiaoyiname() {
         return jiaoyiname;

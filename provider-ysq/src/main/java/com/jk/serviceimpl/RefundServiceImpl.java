@@ -25,4 +25,20 @@ public class RefundServiceImpl implements RefundService {
         pageUtil.setList(list);
         return pageUtil;
     }
+
+    @Override
+    public void xiu(Integer id, Integer num) {
+
+        refundysqMapper.xiu(id,num);
+    }
+
+    @Override
+    public void xiuAll(String[] id,Integer num) {
+        if(num==0){
+
+            refundysqMapper.xiuAll(id);
+            return;
+        }
+        refundysqMapper.xiuAll2(id);
+    }
 }
