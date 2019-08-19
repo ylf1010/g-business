@@ -68,4 +68,15 @@ public class LyClassifyServiceImpl implements LyClassifyService{
     public void delClassify(String flids) {
         classifyMapper.delClassify(flids);
     }
+
+    @Override
+    public Classify xgClassifypage(Integer flid) {
+
+        return classifyMapper.selectByPrimaryKey(flid);
+    }
+
+    @Override
+    public void updClassify(Classify classify) {
+        classifyMapper.updateByPrimaryKey(classify);
+    }
 }
