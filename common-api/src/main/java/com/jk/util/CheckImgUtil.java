@@ -13,7 +13,7 @@ import java.util.Random;
 
 public class CheckImgUtil implements Serializable {
 
-	public static void buildCheckImg(HttpServletRequsert request,HttpServletResponse response) {
+	public static void buildCheckImg(HttpServletRequest request,HttpServletResponse response) {
 		try {
 			checkImg(request,response);
 		} catch (Exception e) {
