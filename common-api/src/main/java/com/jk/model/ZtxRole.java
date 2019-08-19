@@ -42,7 +42,7 @@ public class ZtxRole implements Serializable {
     }
 
     public void setChecked(String checked) {
-        this.checked = checked == null ? null : checked.trim();
+        this.checked = checked;
     }
 
     public String getText() {

@@ -27,6 +27,8 @@ public class Um_xu implements Serializable {
      private   String  rank;
     private   Integer  price;
 
+
+
     public Integer getKeid() {
 
         return keid;

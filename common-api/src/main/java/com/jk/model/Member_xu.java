@@ -8,7 +8,15 @@ public class Member_xu implements Serializable {
     private  String  rank;
     private  Integer  price;
     private  String  tequan;
+  private  Integer  hystatus;
 
+    public Integer getHystatus() {
+        return hystatus;
+    }
+
+    public void setHystatus(Integer hystatus) {
+        this.hystatus = hystatus;
+    }
 
     public String getTequan() {
         return tequan;
