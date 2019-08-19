@@ -7,7 +7,7 @@ import com.jk.util.ParameUtil;
 import java.util.List;
 
 public interface ZtxService {
-    List<ZtxTree> querytree();
+    List<ZtxTree> querytree(Integer id);
 
     List queryrole(ParameUtil param);
 
@@ -32,4 +32,14 @@ public interface ZtxService {
     void deleteuser(String ids);
 
     void updatestatus(Integer id, Integer status);
+
+    void updatero(Integer ids, Integer id);
+
+    List<ZtxTree> querytreebyrid(Integer id, int pid);
+
+    List<String> queryrolebyid(Integer id);
+
+    void updaterolecount(int i, Integer ids);
+
+    List<ZtxRole> querytype();
 }

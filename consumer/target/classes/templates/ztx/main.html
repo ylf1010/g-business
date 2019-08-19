@@ -21,7 +21,6 @@
     <!-- 引入fileinput的css -->
     <link type="text/css" rel="stylesheet" href="../js/fileinput/css/fileinput.min.css" />
     <!-- 引入my97 -->
-    <script type="text/javascript" src="../js/my97/WdatePicker.js"></script>
     <!-- 引入bootstrap的js-->
     <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
     <!-- 引入bootstrap的js-->
@@ -39,8 +38,6 @@
     <script type="text/javascript" src="../js/fileinput/js/locales/zh.js"></script>
     <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
     <!--  引入上传图片的js -->
-    <script src="../js/uploadify/jquery.uploadify.min.js"></script>
-    <link rel="stylesheet" href="../js/uploadify/uploadify.css">
 
     <style type="text/css">
         body {padding-top:55px;}
@@ -62,50 +59,14 @@
         <!-- 头部信息 -->
         <div class="navbar-header">
             <a class="navbar-brand glyphicon glyphicon-globe" href="javascript:dialogRedis()" id="menu-toggle">
-                金科
+                金科1902B三组
             </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="active "><a href="#" class="glyphicon glyphicon-shopping-cart">&nbsp招标采购 <span class="sr-only">(current)</span></a></li>
-                <li><a href="#" class="glyphicon glyphicon-grain">&nbsp师资团队</a></li>
-                <li><a href="#" class="glyphicon glyphicon-sunglasses">&nbsp明星学员</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle glyphicon glyphicon-text-color" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">java课程 <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#" class="glyphicon glyphicon-cloud">云计算</a></li>
-                        <li><a href="#" class="glyphicon glyphicon-th">云应用</a></li>
-                        <li><a href="#" class="glyphicon glyphicon-info-sign">云服务</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#" class="glyphicon glyphicon-cloud-upload">大数据</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#" class="glyphicon glyphicon-cloud-download">数据挖掘</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <form class="navbar-form navbar-left">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-
-
             <!-- 右边的    导航 按钮 -->
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="javascript:zx()"> 注销</a></li>
-                <li><a href="#">Link</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
-                </li>
             </ul>
         </div>
     </div>
@@ -145,6 +106,10 @@
     $(function(){
         showTree();
     });
+
+    function zx(){
+        location.href="../ztx/zx"
+    }
 
     function showTree(){
         $.ajax({

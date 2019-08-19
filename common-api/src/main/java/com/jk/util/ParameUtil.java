@@ -16,6 +16,16 @@ public class ParameUtil implements Serializable {
     private String rolename;
     private String username;
 
+    public String getIdss() {
+        return idss;
+    }
+
+    public void setIdss(String idss) {
+        this.idss = idss;
+    }
+
+    private String idss;
+
     public String getUsername() {
         return username;
     }

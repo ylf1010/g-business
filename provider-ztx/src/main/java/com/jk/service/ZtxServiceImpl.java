@@ -1,6 +1,7 @@
 package com.jk.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.alibaba.fastjson.JSONObject;
 import com.jk.dao.ZtxRoleMapper;
 import com.jk.dao.ZtxRoleTreeMapper;
 import com.jk.dao.ZtxTreeMapper;
@@ -12,7 +13,9 @@ import com.jk.model.ZtxUserRole;
 import com.jk.util.ParameUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ZtxServiceImpl implements ZtxService{
@@ -27,8 +30,8 @@ public class ZtxServiceImpl implements ZtxService{
     private ZtxUserRoleMapper urm;
 
     @Override
-    public List<ZtxTree> querytree() {
-        return tm.querytree();
+    public List<ZtxTree> querytree(Integer id) {
+        return tm.querytree(id);
     }
 
     @Override
@@ -52,7 +55,7 @@ public class ZtxServiceImpl implements ZtxService{
             for (int j = 0; j < listTwo.size(); j++) {
                 // 用  原来 选中的 菜单id  和所有的  菜单id  对比 ，对比成功 就选中
                 if(list.get(i).equals(listTwo.get(j).getId().toString())){
-                    listTwo.get(j).setChecked("true");
+                    listTwo.get(j).setChecked(true);
                 }
             }
         }
@@ -87,7 +90,7 @@ public class ZtxServiceImpl implements ZtxService{
     @Override
     public List queryuser(ParameUtil param) {
         int papa=(param.getPageNumber()-1)*param.getPageSize();
-        return rm.queryuser(param.getUsername(),papa,param.getPageSize());
+        return rm.queryuser(param,papa,param.getPageSize());
     }
 
     @Override
@@ -134,10 +137,85 @@ public class ZtxServiceImpl implements ZtxService{
 
     @Override
     public void updatestatus(Integer id, Integer status) {
-        if(status==1){
-            urm.updatestatus(id,2);
-        }else{
-            urm.updatestatus(id,1);
-        }
+            urm.updatestatus(id,status);
     }
+
+    @Override
+    public void updatero(Integer ids, Integer id) {
+       urm.updatero(ids,id);
+    }
+
+    @Override
+    public List<ZtxTree> querytreebyrid(Integer id, int pid) {
+        JSONObject json =new JSONObject();
+        List <ZtxTree> list =queryOrgAll3(pid);
+        List <ZtxTree> list2= queryOrgAll2(id,pid);
+        Map map=new HashMap();
+        for (int i = 0; i < list.size(); i++) {
+            for (int j = 0; j < list2.size(); j++) {
+                if(list.get(i).getId()==list2.get(j).getId()){
+                    list.get(i).getId();
+                    json.put("checked", true);
+                    list.get(i).setState(json);
+                }
+            }
+            if(list.size()>0){
+                for (int s = 0; s < list.size(); s++) {
+                    List<ZtxTree>list3=querytreebyrid(id,list.get(s).getId());
+                    list.get(s).setNodes(list3);
+                }
+            }
+        }
+        return list;
+    }
+
+    @Override
+    public List<String> queryrolebyid(Integer id) {
+        List<String> list =  urm.queryrolebyid(id);
+        return list;
+    }
+
+    @Override
+    public void updaterolecount(int i, Integer ids) {
+        rm.updaterolecount1(i);
+        rm.updaterolecount2(ids);
+
+    }
+
+    @Override
+    public List<ZtxRole> querytype() {
+        return rm.queryroleall();
+    }
+
+    public List<ZtxTree> queryOrgAll2(int id, int pid) {
+        // 根据pid查询子节点
+        List<ZtxTree> orgs = tm.queryOrgAll2(id,pid);
+        // 如果查询到子节点集合
+        if(orgs != null && orgs.size()>0){
+            // 循环集合，将每个机构对象的id作为pid 继续查询子节点集合
+            for (int i = 0; i < orgs.size(); i++) {
+                List<ZtxTree> orgs2 = queryOrgAll2(id,orgs.get(i).getId());
+                // 将查询的子节点集合放到该结构对象的children属性中
+                orgs.get(i).setNodes(orgs2);
+            }
+        }
+        return orgs;
+    }
+
+    public List<ZtxTree> queryOrgAll3(int pid) {
+        // 根据pid查询子节点
+        List<ZtxTree> orgs = tm.queryOrgAll3(pid);
+        // 如果查询到子节点集合
+        if(orgs != null && orgs.size()>0){
+            // 循环集合，将每个机构对象的id作为pid 继续查询子节点集合
+            for (int i = 0; i < orgs.size(); i++) {
+                List<ZtxTree> orgs2 = queryOrgAll3(orgs.get(i).getId());
+                // 将查询的子节点集合放到该结构对象的children属性中
+                orgs.get(i).setNodes(orgs2);
+            }
+        }
+        return orgs;
+    }
+
+
 }

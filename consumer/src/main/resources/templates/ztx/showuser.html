@@ -21,7 +21,6 @@
     <!-- 引入fileinput的css -->
     <link type="text/css" rel="stylesheet" href="../js/fileinput/css/fileinput.min.css" />
     <!-- 引入my97 -->
-    <script type="text/javascript" src="../js/my97/WdatePicker.js"></script>
     <!-- 引入bootstrap的js-->
     <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
     <!-- 引入bootstrap的js-->
@@ -38,14 +37,15 @@
     <!--  引入fileinput的js -->
     <script type="text/javascript" src="../js/fileinput/js/locales/zh.js"></script>
     <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
-    <!--  引入上传图片的js -->
-    <script src="../js/uploadify/jquery.uploadify.min.js"></script>
-    <link rel="stylesheet" href="../js/uploadify/uploadify.css">
 
 </head>
 <body >
 
 <form id="pro_from" class="form-inline">
+    <div id="leagid">
+        角色：
+
+    </div>
     用户名：<input type="text" class="form-control" name="username" >
     <button type="button" class="btn btn-success" onclick="querytj()">查询</button>
 </form>
@@ -87,7 +87,28 @@
 
     $(function(){
         queryData();
+        showleag();
     });
+
+    function showleag(){
+        $.ajax({
+            url:"../ztx/querytype",
+            type:"post",
+            success:function(data){
+                var thtml='';
+                for (var i = 0; i < data.length; i++) {
+                    thtml+='<input type="checkbox" value="'+data[i].roleid+'" name="role">'+data[i].rolename+''
+                }
+                $("#leagid").html(thtml);
+            },
+            error:function(){
+                alert("后台错误，请使用debug调试");
+            }
+        })
+    }
+
+
+
 
     function queryData(){
         //创建bootstrapTable
@@ -135,7 +156,7 @@
                 {field:'email',title:'邮箱',width:$(this).width() * 0.2},
                 {field:'rolename',title:'角色',width:$(this).width() * 0.2},
                 {field:'balanceid',title:'余额',width:$(this).width() * 0.2},
-                {field:'usercreatetime',title:'创建日期',width:$(this).width() * 0.2},
+                {field:'usercraetetime',title:'创建日期',width:$(this).width() * 0.2},
                 {field:'status',title:'状态',width:$(this).width() * 0.2,formatter: function(value,row,index){
                     if(value==1){
                         return "正常";
@@ -144,11 +165,11 @@
                     }
                 }},
                 {field:'cz',title:'操作',width:$(this).width() * 0.2,formatter: function(value,row,index){
-                        var a= '<button type="button" class="btn btn-Warning " onclick="editrole('+row.id+')">绑定角色</button>'
+                        var a= '<button type="button" class="btn btn-Warning " onclick="editqx('+row.id+')">绑定角色</button>'
                         if(row.status==1){
-                            a+='<button type="button" class="btn btn-Warning " onclick="updatestatus('+row.id+','+row.status+')">禁用</button>'
+                            a+='<button type="button" class="btn btn-Warning " onclick="updatestatus('+row.id+','+2+')">禁用</button>'
                         }else{
-                            a+='<button type="button" class="btn btn-Warning " onclick="updatestatus('+row.id+','+row.status+')">启用</button>'
+                            a+='<button type="button" class="btn btn-Warning " onclick="updatestatus('+row.id+','+1+')">启用</button>'
                         }
                         return a;
                 }},
@@ -158,13 +179,10 @@
     }
 
     function updatestatus(id,state){
-        alert(id);
-        alert(state);
         $.ajax({
             url:"../ztx/updatestatus?id="+id+"&status="+state,
             type:"post",
             success:function (){
-                    alert("成功");
                     $('#dataGrid3').bootstrapTable("refresh");
             },
             error:function (){
@@ -175,9 +193,17 @@
 
     //==================================================条件查询==========================================
     function querytj(){
+        var arr=document.getElementsByName("role");
+        var idss="";
+        for(var i=0;i<arr.length;i++){
+            if(arr[i].checked){
+                idss+=","+arr[i].value;
+            }
+        }idss=idss.substr(1);
         $("#dataGrid3").bootstrapTable("refresh", {
             "query": {
                 "username": $('[name="username"]').val(),
+                "idss": idss,
             }
         });
     }
@@ -244,6 +270,7 @@
                     data: data,
                     //是否显示复选框
                     showCheckbox : true,
+                    checked:true,
                 })
             },
             error:function(){
@@ -300,39 +327,35 @@
         }
     }
 
-    function editqx(rid){
-        alert(id)
-        BootstrapDialog.show({
-            title: '设置权限',
-            message:  $('<div></div>').load('../ztx/hxrole?id='+rid),
-            buttons: [
-                {
-                    label: '保存',
-                    action: function(dialog) {
-                        var a=$('#edittree').treeview('getChecked');
-                        var ids=""
-                        for(var i=0;i<a.length;i++){
-                            ids+=","+a[i].roleid
-                        }
-                        ids=ids.substring(1)
+    function editqx(id){
+        bootbox.dialog({
+            title: '绑定角色',
+            message: createAddContent("../ztx/hxrole?id="+id),
+            closeButton: true,//是否显示关闭按钮
+            buttons: {
+                "success": {
+                    "label": "<i class='icon-ok'></i> 保存",
+                    "className": "btn-sm btn-success",
+                    "callback": function () {
+                        var ids=$("[name='role']:checked").val()
                         $.ajax({
+                            url:"../ztx/updatero",
                             type:"post",
-                            url:"../ztx/updaterole",
-                            data:{
-                                id:$("#rid").val(),
-                                ids:ids
-                            },
+                            data:{"id":$("#uid").val(),"ids":ids},
                             success:function(){
-                                dialog.close();
+                                $('#myModal3').modal('hide'); //成功后关闭弹框
+                                $('#dataGrid3').bootstrapTable("refresh");
                             }
                         })
                     }
-                },{
-                    label: '关闭',
-                    action: function(dialog) {
-                        dialog.close();
+                },
+                "cancel": {
+                    "label": "<i class='icon-info'></i> 取消",
+                    "className": "btn-sm btn-danger",
+                    "callback": function () {
                     }
-                }]
+                }
+            }
         });
     }
 </script>
