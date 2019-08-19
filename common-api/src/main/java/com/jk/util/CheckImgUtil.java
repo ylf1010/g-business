@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class CheckImgUtil implements Serializable {
 
-	public static void buildCheckImg(HttpServletRequest request,HttpServletResponse response) {
+	public static void buildCheckImg(HttpServletRequsert request, HttpServletResponse response) {
 		try {
 			checkImg(request,response);
 		} catch (Exception e) {
@@ -19,7 +19,7 @@ public class CheckImgUtil implements Serializable {
 	}
 	
 	//获取验证码图片并生成到前台
-    public static String checkImg(HttpServletRequest request,HttpServletResponse response) throws Exception{  
+    public static String checkImg(HttpServletRequest request, HttpServletResponse response) throws Exception{
         int width = 120;
         int height = 30;
   
@@ -115,5 +115,5 @@ public class CheckImgUtil implements Serializable {
 	    int g = fc + random.nextInt(bc - fc);  
 	    int b = fc + random.nextInt(bc - fc);  
 	    return new Color(r, g, b);  
-	}  
+	}
 }

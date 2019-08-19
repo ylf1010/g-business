@@ -79,6 +79,8 @@
 <!-- 按扭  -->
 <div >
     <button class="btn btn-danger btn-sm" onclick="delete1()">批量删除</button>
+    <button class="btn btn-info btn-sm" >导入客户</button>
+    <button class="btn btn-warning btn-sm" >导出信息</button>
 
 <!-- table 数据展示  -->
 <table id="data" ></table>
@@ -134,7 +136,7 @@
             //选中行是不选中复选框或者单选按钮
             clickToSelect : true,
             showToggle : true, //是否显示详细视图和列表视图的切换按钮
-            cardView : false, //是否显示详细视图
+            cardView : false, //是否显示详细视图 为true时显示详细视图
             uniqueId : "id", //每一行的唯一标识，一般为主键列
             showColumns : true, //是否显示所有的列
             showRefresh : true, //是否显示刷新按钮
@@ -172,11 +174,11 @@
             },
             columns : [
                 { field : 'checkbox',checkbox : true }, //开启复选框
-                {field : 'keid', title : '编号', width : 300},
+              //  {field : 'keid', title : '编号', width : 300},
                 {field : 'xx', title : '客户', width : 300,
                     formatter:function(value,row,index){
                        var a="<img src='../upload/"+row.img+"' width='20' height='20'>";
-                         a+="<a href='javascript:xiangqing()'>"+row.nickname+"</a>";
+                         a+="<a href='javascript:xiangqing("+row.keid+")'>"+row.nickname+"</a>";
                         return a;
                     }
                 },
@@ -191,7 +193,7 @@
                 { field : 'endtime', title : '上次登录时间', width : 300 },
                 { field : 'x', title : '操作', width : 300,
                     formatter:function(value,row,index){
-                        return  "<a href='javascript:xiangqing()' >详情</a>";
+                        return  "<a href='javascript:xiangqing("+row.keid+")' >详情</a>";
                     }
                 }
             ]
@@ -213,8 +215,8 @@
 
 
     //客户详情
-    xiangqing=function(){
-        alert(1258);
+    xiangqing=function(keid){
+        location.href="../xu/xkehuxiangqing1?keid="+keid;
     }
 
     //删除  批量删除
@@ -296,7 +298,6 @@
         }
 
         ids = ids.substring(0, ids.length - 1);
-        alert(ids);
         if(confirm("确定移组")){
             $.ajax({
                 url: "../xu/xupdate1",
