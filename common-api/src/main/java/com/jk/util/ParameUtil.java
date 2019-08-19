@@ -15,6 +15,33 @@ public class ParameUtil implements Serializable {
     private String bookName;
     private String rolename;
     private String username;
+    private String productname;
+    private Integer flid;
+    private  String flname;
+
+    public String getProductname() {
+        return productname;
+    }
+
+    public void setProductname(String productname) {
+        this.productname = productname;
+    }
+
+    public Integer getFlid() {
+        return flid;
+    }
+
+    public void setFlid(Integer flid) {
+        this.flid = flid;
+    }
+
+    public String getFlname() {
+        return flname;
+    }
+
+    public void setFlname(String flname) {
+        this.flname = flname;
+    }
 
     public String getUsername() {
         return username;
