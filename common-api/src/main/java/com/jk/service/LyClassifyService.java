@@ -11,4 +11,10 @@ public interface LyClassifyService {
     void addClassify(Classify classify);
 
     void delClassify(String flids);
+
+    Classify xgClassifypage(Integer flid);
+
+    void updClassify(Classify classify);
+
+    void delclassifyid(int flid);
 }
