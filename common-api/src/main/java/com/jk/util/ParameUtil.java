@@ -15,43 +15,68 @@ public class ParameUtil implements Serializable {
     private String bookName;
     private String rolename;
     private String username;
-    private String productname;
-    private Integer flid;
-    private  String flname;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date startdate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date enddate;
+    //发货状态
+    private String state;
+    //退款状态
+    private String status;
+    //退款方式
+    private String refundway;
+    //原因
+    private String cause;
 
-    public String getProductname() {
-        return productname;
+    public Date getStartdate() {
+        return startdate;
     }
 
-    public void setProductname(String productname) {
-        this.productname = productname;
+    public void setStartdate(Date startdate) {
+        this.startdate = startdate;
     }
 
-    public Integer getFlid() {
-        return flid;
+    public Date getEnddate() {
+        return enddate;
     }
 
-    public void setFlid(Integer flid) {
-        this.flid = flid;
+    public void setEnddate(Date enddate) {
+        this.enddate = enddate;
     }
 
-    public String getFlname() {
-        return flname;
+    public String getState() {
+        return state;
     }
 
-    public void setFlname(String flname) {
-        this.flname = flname;
+    public void setState(String state) {
+        this.state = state;
     }
 
-    public String getIdss() {
-        return idss;
+    public String getStatus() {
+        return status;
     }
 
-    public void setIdss(String idss) {
-        this.idss = idss;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    private String idss;
+    public String getRefundway() {
+        return refundway;
+    }
+
+    public void setRefundway(String refundway) {
+        this.refundway = refundway;
+    }
+
+    public String getCause() {
+        return cause;
+    }
+
+    public void setCause(String cause) {
+        this.cause = cause;
+    }
 
     public String getUsername() {
         return username;

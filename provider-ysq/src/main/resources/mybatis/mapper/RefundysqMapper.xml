@@ -3,7 +3,7 @@
 <mapper namespace="com.jk.dao.RefundysqMapper">
 
 <select id="cha" parameterType="com.jk.util.ParameUtil" resultType="com.jk.model.Refundysq">
-  select * from refund-ysq where 1=1 <include refid="aa"></include>
+  select * from refund_ysq where 1=1 <include refid="aa"></include>
 </select>
   <sql id="aa">
     <if test="refundway!=null and refundway!=''">

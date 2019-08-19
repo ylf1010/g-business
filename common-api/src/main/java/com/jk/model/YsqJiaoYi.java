@@ -22,6 +22,16 @@ public class YsqJiaoYi implements Serializable {
 
     private String money;
 
+    private String beizhu;
+
+    public String getBeizhu() {
+        return beizhu;
+    }
+
+    public void setBeizhu(String beizhu) {
+        this.beizhu = beizhu;
+    }
+
     public Integer getId() {
         return id;
     }

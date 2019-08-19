@@ -1,9 +1,11 @@
 package com.jk.dao;
 
-import com.jk.model.User;
 import com.jk.model.ZtxRole;
 import com.jk.util.ParameUtil;
-import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -20,7 +22,7 @@ public interface ZtxRoleMapper {
     @Delete("delete from y_role where roleid in (${ids})")
     void deleterole(@Param("ids") String ids);
 
-    List queryuser(@Param("p") ParameUtil param, @Param("papa") int papa, @Param("pageSize") Integer pageSize);
+    List queryuser(@Param("username") String username, @Param("papa") int papa, @Param("pageSize") Integer pageSize);
 
     Long queryusercount(@Param("p") ParameUtil param);
 
@@ -29,15 +31,4 @@ public interface ZtxRoleMapper {
 
     @Delete("delete from user where id in (${ids})")
     void deleteuser(@Param("ids") String ids);
-
-    @Update("update y_role set rolecount=rolecount-1 where roleid=#{i}")
-    void updaterolecount1(@Param("i")int i);
-    @Update("update y_role set rolecount=rolecount+1 where roleid=#{ids}")
-    void updaterolecount2(@Param("ids")Integer ids);
-
-    @Select("select * from user where id=#{id}")
-    User upduser(@Param("id")Integer id);
-
-    @Update("update user set username=#{username},password=#{password},baccount=#{baccount},phone=#{phone},email=#{email} where id=#{id}")
-    void updateuser(User user);
 }
