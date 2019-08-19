@@ -87,6 +87,7 @@ public class ZtxServiceImpl implements ZtxService{
     @Override
     public List queryuser(ParameUtil param) {
         int papa=(param.getPageNumber()-1)*param.getPageSize();
+        System.out.println("================"+param.getUsername());
         return rm.queryuser(param.getUsername(),papa,param.getPageSize());
     }
 
